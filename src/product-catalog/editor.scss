@@ -1,0 +1,19 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-vinoshipper-injector-product-catalog {
+	border: 2px dotted #f00;
+
+	.vs-injector-block-editor-content {
+		.vs-injector-block-title {
+			font-weight: bold;
+		}
+
+		p {
+			margin-bottom: 0;
+		}
+	}
+}
