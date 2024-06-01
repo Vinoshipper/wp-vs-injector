@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -31,5 +30,4 @@ class Vs_Injector_Activator {
 	 */
 	public static function activate() {
 	}
-
 }

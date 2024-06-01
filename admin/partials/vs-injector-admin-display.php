@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -13,20 +12,20 @@
  */
 
 if ( ! current_user_can( 'manage_options' ) ) {
-	wp_die( __( 'Sorry, you are not allowed to manage options for this site.' ) );
+	wp_die( esc_html__( 'Sorry, you are not allowed to manage options for this site.', 'vinoshipper-injector' ) );
 }
 
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
-    <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-    <form action="options.php" method="post" data-1p-ignore>
-    <?php
-    settings_fields( 'vs_injector_settings' );
-    do_settings_sections( 'vs_injector_settings_section_general' );
-    do_settings_sections( 'vs_injector_settings_section_cart' );
-    submit_button( __( 'Save Settings', 'textdomain' ) );
-    ?>
-    </form>
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+	<form action="options.php" method="post" data-1p-ignore>
+	<?php
+	settings_fields( 'vs_injector_settings' );
+	do_settings_sections( 'vs_injector_settings_section_general' );
+	do_settings_sections( 'vs_injector_settings_section_cart' );
+	submit_button( ( esc_html__( 'Save Settings', 'vinoshipper-injector' ) ) );
+	?>
+	</form>
 </div>

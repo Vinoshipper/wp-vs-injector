@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -44,14 +43,13 @@ class Vs_Injector_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    0.1.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
-
+		$this->version     = $version;
 	}
 
 	/**
@@ -73,8 +71,7 @@ class Vs_Injector_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vs-injector-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vs-injector-public.css', [], $this->version, 'all' );
 	}
 
 	/**
@@ -96,107 +93,117 @@ class Vs_Injector_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-public.js', [ 'jquery' ], $this->version, false );
 	}
 
-	public function add_header_code () {
+	/**
+	 * Add the Vinoshipper Injector code and initialize functions.
+	 */
+	public function add_header_code() {
 		$tempAccountId = get_option( 'vs_injector_account_id' );
 
-		if (is_numeric($tempAccountId)) {
-			$tempTheme = get_option('vs_injector_theme');
-			$tempThemeDark = boolval(get_option('vs_injector_theme_dark'));
+		if ( is_numeric( $tempAccountId ) ) {
+			$tempTheme     = get_option( 'vs_injector_theme' );
+			$tempThemeDark = boolval( get_option( 'vs_injector_theme_dark' ) );
 			$computedTheme = null;
 
-			if ($tempTheme && $tempThemeDark) {
+			if ( $tempTheme && $tempThemeDark ) {
 				$computedTheme = $tempTheme . '-dark';
-			} else if ($tempTheme) {
+			} elseif ( $tempTheme ) {
 				$computedTheme = $tempTheme;
-			} else if ($tempThemeDark) {
+			} elseif ( $tempThemeDark ) {
 				$computedTheme = 'dark';
 			}
 
-			$settings = array(
-				'theme' => $computedTheme,
-				'cartPosition' => get_option('vs_injector_cart_position', 'end'),
-				'cartButton' => boolval(get_option('vs_injector_cart_button', true)),
-			);
+			$settings = [
+				'theme'        => $computedTheme,
+				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
+				'cartButton'   => boolval( get_option( 'vs_injector_cart_button', true ) ),
+			];
 			echo '<script type="text/javascript">
-			// Vinoshipper Injector v4
+			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
 			window.document.addEventListener(\'vinoshipper:loaded\', () => {
-				window.Vinoshipper.init(' . $tempAccountId . ', ' . json_encode($settings) . ');
+				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
 			});
+			if (window.Vinoshipper) {
+				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+			}
 			</script>
 			';
-			echo '<script src="https://vinoshipper.com/injector/index.js" type="text/javascript"></script>';
 		} else {
 			echo '<script type="text/javascript">console.error("Vinoshipper Injector: Account ID not defined.");</script>';
 		}
 	}
 
+	/**
+	 * Register all settings.
+	 */
 	public function settings_init() {
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_account_id',
-			array(
-				'type'			=> 'number',
-				'description'	=> 'The Vinoshipper Account ID.',
-				'show_in_rest'	=> true,
-				'default'	=> null,
-			)
+			[
+				'type'         => 'number',
+				'description'  => 'The Vinoshipper Account ID.',
+				'show_in_rest' => true,
+				'default'      => null,
+			]
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_theme',
-			array(
-				'type'			=> 'string',
-				'description'	=> 'Global theme setting.',
-				'show_in_rest'	=> true,
-				'default'		=> null,
-			)
+			[
+				'type'         => 'string',
+				'description'  => 'Global theme setting.',
+				'show_in_rest' => true,
+				'default'      => null,
+			]
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_theme_dark',
-			array(
-				'type'			=> 'boolean',
-				'description'	=> 'Enable Dark Mode.',
-				'show_in_rest'	=> true,
-				'default'		=> false,
-			)
+			[
+				'type'         => 'boolean',
+				'description'  => 'Enable Dark Mode.',
+				'show_in_rest' => true,
+				'default'      => false,
+			]
 		);
 
 		// Cart Options
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_cart_position',
-			array(
-				'type'			=> 'string',
-				'description'	=> 'Position the cart to either the start or end of the screen.',
-				'show_in_rest'	=> true,
-				'default'		=> 'end',
-				'sanitize_callback'		=> array($this, 'sanitize_cart_position')
-			)
+			[
+				'type'              => 'string',
+				'description'       => 'Position the cart to either the start or end of the screen.',
+				'show_in_rest'      => true,
+				'default'           => 'end',
+				'sanitize_callback' => [ $this, 'sanitize_cart_position' ],
+			]
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_cart_button',
-			array(
-				'type'			=> 'boolean',
-				'description'	=> 'Display the cart button',
-				'show_in_rest'	=> true,
-				'default'		=> true,
-			)
+			[
+				'type'         => 'boolean',
+				'description'  => 'Display the cart button',
+				'show_in_rest' => true,
+				'default'      => true,
+			]
 		);
 	}
 
 	/**
 	 * Sanitize: Cart Position
+	 *
+	 * @param string $settings The input string.
 	 */
-	public function sanitize_cart_position ($settings) {
-		$testingString = strtolower(sanitize_text_field($settings));
-		if ($testingString === 'start' || $testingString === 'end') {
-			return $testingString;
+	public function sanitize_cart_position( $settings ) {
+		$testingString = strtolower( sanitize_text_field( $settings ) );
+		if ( 'end' === $testingString ) {
+			return 'end';
 		} else {
 			return 'start';
 		}

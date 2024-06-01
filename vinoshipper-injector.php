@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Vinoshipper Injector
  * Plugin URI:        https://www.vinoshipper.com
- * Description:       Add the ability to incorporate Vinoshipper's Injector with inside Wordpress.
+ * Description:       Add the ability to incorporate Vinoshipper's Injector with inside WordPress.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
@@ -28,21 +28,24 @@ define( 'VS_INJECTOR_VERSION', '0.1.0' );
  * Available VS Themes
  * List of Available themes for Vinoshipper Injector.
  */
-define( 'VS_INJECTOR_THEMES', array(
-	'Default (Blue)' => null,
-	'Indigo' => 'indigo',
-	'Purple' => 'purple',
-	'Pink' => 'pink',
-	'Red' => 'red',
-	'Orange' => 'orange',
-	'Yellow' => 'yellow',
-	'Green' => 'green',
-	'Teal' => 'teal',
-	'Cyan' => 'cyan',
-	'Gray' => 'gray',
-	'Black' => 'black',
-));
-define('VS_INJECTOR_START_END', array('start', 'end'));
+define(
+	'VS_INJECTOR_THEMES',
+	[
+		'Default (Blue)' => null,
+		'Indigo'         => 'indigo',
+		'Purple'         => 'purple',
+		'Pink'           => 'pink',
+		'Red'            => 'red',
+		'Orange'         => 'orange',
+		'Yellow'         => 'yellow',
+		'Green'          => 'green',
+		'Teal'           => 'teal',
+		'Cyan'           => 'cyan',
+		'Gray'           => 'gray',
+		'Black'          => 'black',
+	]
+);
+define( 'VS_INJECTOR_START_END', [ 'start', 'end' ] );
 
 /**
  * The code that runs during plugin activation.
@@ -84,7 +87,6 @@ function run_vs_injector() {
 
 	$plugin = new Vs_Injector();
 	$plugin->run();
-
 }
 run_vs_injector();
 

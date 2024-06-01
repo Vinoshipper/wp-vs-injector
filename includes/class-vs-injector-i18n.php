@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage VinoshipperInjector/includes
  * @author     Vinoshipper <support@vinoshipper.com>
  */
-class Vs_Injector_i18n {
+class Vs_Injector_I18n {
 
 
 	/**
@@ -39,9 +38,5 @@ class Vs_Injector_i18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

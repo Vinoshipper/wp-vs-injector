@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -30,7 +29,5 @@ class Vs_Injector_Deactivator {
 	 * @since    0.1.0
 	 */
 	public static function deactivate() {
-
 	}
-
 }
