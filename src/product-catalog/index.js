@@ -8,6 +8,7 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Internal dependencies
  */
+import vs_injector_init from '../core';
 import Edit from './edit';
 import metadata from './block.json';
 
@@ -22,3 +23,5 @@ registerBlockType( metadata.name, {
 	 */
 	edit: Edit,
 } );
+
+vs_injector_init();
