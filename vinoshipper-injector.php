@@ -97,7 +97,17 @@ run_vs_injector();
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
+function vinoshipper_injector_block_categories_init( $categories ) {
+	$categories[] = array(
+		'slug' => 'vinoshipper',
+		'title' => 'Vinoshipper Injector'
+	);
+
+	return $categories;
+}
+add_filter('block_categories_all', 'vinoshipper_injector_block_categories_init');
 function vinoshipper_injector_block_init() {
 	register_block_type( __DIR__ . '/build/product-catalog' );
+	register_block_type( __DIR__ . '/build/available-in' );
 }
 add_action( 'init', 'vinoshipper_injector_block_init' );

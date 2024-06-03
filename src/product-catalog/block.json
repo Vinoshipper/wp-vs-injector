@@ -3,8 +3,8 @@
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/product-catalog",
 	"version": "0.1.0",
-	"title": "Vinoshipper Product Catalog",
-	"category": "embed",
+	"title": "Product Catalog",
+	"category": "vinoshipper",
 	"icon": "list-view",
 	"description": "Display a list of products.",
 	"keywords": [
