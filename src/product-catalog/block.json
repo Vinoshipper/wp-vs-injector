@@ -3,10 +3,16 @@
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/product-catalog",
 	"version": "0.1.0",
-	"title": "Product Catalog",
+	"title": "Vinoshipper Product Catalog",
 	"category": "embed",
 	"icon": "list-view",
 	"description": "Display a list of products.",
+	"keywords": [
+		"vs",
+		"products",
+		"list",
+		"cards"
+	],
 	"example": {},
 	"supports": {
 		"html": false
@@ -14,9 +20,7 @@
 	"textdomain": "vinoshipper-injector",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
 	"render": "file:./render.php",
-	"viewScript": "file:./view.js",
 	"attributes": {
 		"cards": {
 			"type": "boolean",

@@ -2,6 +2,7 @@ import { InspectorControls } from "@wordpress/block-editor";
 import {
 	PanelBody,
 	ToggleControl,
+	SelectControl,
 	__experimentalNumberControl as NumberControl
 } from "@wordpress/components";
 
@@ -49,21 +50,35 @@ export default function Edit( { attributes, setAttributes } ) {
 							help='Display a specific custom Product Catalog. Leave blank for default Product Catalog.'
 							value={ list }
 							onChange={ (newValue) => {
-								setAttributes( { list: newValue } );
+								if (newValue) {
+									setAttributes( { list: parseInt(newValue) } );
+								} else {
+									setAttributes( { list: null } );
+								}
 							} }
+							placeholder="Default Product Catalog"
+							min={0}
+							step={1}
 						/>
+						<p>
+							To obtain the List ID for custom or brand catalogs, visit <a href="https://vinoshipper.com/ui/producer/products/catalogs" target="_blank">"Product Catalog -&gt; Types"</a> using your Vinoshipper Producer's Admin access.
+						</p>
 					</fieldset>
 				</PanelBody>
 				<PanelBody title="Display">
 					<fieldset>
-						<ToggleControl
-							label="Enable Cards View"
+						<SelectControl
+							label="Catalog Layout"
+							options={ [
+								{ label: 'List', value: false },
+								{ label: 'Cards', value: true },
+							]}
+							value={ cards }
 							help={
-								cards
-									? 'Cards View'
-									: 'List View (default)'
+								<div>
+									See <a href="https://developer.vinoshipper.com/docs/injector-product-catalog-layouts" target="_blank">Product Catalog -&gt; Layouts</a> for more information.
+								</div>
 							}
-							checked={ cards }
 							onChange={ (newValue) => {
 								setAttributes( { cards: newValue } );
 							} }
@@ -72,8 +87,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							label="Force Description"
 							help={
 								descForce
-									? 'Always show the full description of each product.'
-									: 'Allow click to show description on smaller element widths. (default)'
+									? 'Always show the full description of each product and not render the "Show/Hide Description" actions, regardless of the layout and the width of the element.'
+									: 'Render the "Show/Hide Description" actions, except when in list layout and the element is larger than 504px.'
 							}
 							checked={ descForce }
 							onChange={ (newValue) => {
@@ -84,12 +99,15 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 				<PanelBody title="'Available In' Component" initialOpen={false}>
 					<fieldset>
+						<p>
+							If using the standalone Available In component, turn off "Display Available In".
+						</p>
 						<ToggleControl
 							label="Display Available In"
 							help={
 								available
-									? 'Will display the "Available In" component.'
-									: 'Will not display the "Available In" component.'
+									? 'Display the "Available In" component.'
+									: 'Do not display the "Available In" component.'
 							}
 							checked={ available }
 							onChange={ (newValue) => {
@@ -101,8 +119,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							help={
 								tooltip
 									? 'Display tooltips when hovering over state code.'
-									: 'Will not display tooltips when hovering over state code.'
+									: 'Do not display tooltips when hovering over state code.'
 							}
+							disabled={ !available }
 							checked={ tooltip }
 							onChange={ (newValue) => {
 								setAttributes( { tooltip: newValue } );
@@ -112,15 +131,32 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
-				<div className="vs-injector-block-title">
-					{ __(
-						'Product Catalog',
-						'vinoshipper-injector'
-					) }
+				{ available &&
+				<div className="vs-injector-block-available-in">
+					<h2>Available In</h2>
+					{ !tooltip &&
+						<ul>
+							<li>Will hide Tooltips</li>
+						</ul>
+					}
+					<p>View page to see the fully rendered component.</p>
 				</div>
-				<p>
-					Contents will be displayed when viewing this page outside the editor.
-				</p>
+				}
+				<div className="vs-injector-block-product-catalog">
+					<h2>Product List</h2>
+					<ul>
+						{ list &&
+							<li>Product Catalog #{ parseInt(list) }</li>
+						}
+						{ cards &&
+							<li>Display in the Cards Layout.</li>
+						}
+						{ !cards &&
+							<li>Display in the List Layout.</li>
+						}
+					</ul>
+					<p>View page to see the fully rendered component.</p>
+				</div>
 			</div>
 		</div>
 	);
