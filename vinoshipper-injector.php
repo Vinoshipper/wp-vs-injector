@@ -95,17 +95,27 @@ run_vs_injector();
  * Behind the scenes, it registers also all assets so they can be enqueued
  * through the block editor in the corresponding context.
  *
+ * @param   array $block_categories                         Array of categories for block types.
+ * @see https://developer.wordpress.org/reference/hooks/block_categories_all/
+ */
+function vinoshipper_injector_block_categories_init( $block_categories ) {
+	$block_categories[] = [
+		'slug'  => 'vinoshipper',
+		'title' => __( 'Vinoshipper Injector', 'vinoshipper-injector' ),
+		'icon'  => null,
+	];
+
+	return $block_categories;
+}
+add_filter( 'block_categories_all', 'vinoshipper_injector_block_categories_init' );
+
+/**
+ * Registers the block using the metadata loaded from the `block.json` file.
+ * Behind the scenes, it registers also all assets so they can be enqueued
+ * through the block editor in the corresponding context.
+ *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function vinoshipper_injector_block_categories_init( $categories ) {
-	$categories[] = array(
-		'slug' => 'vinoshipper',
-		'title' => 'Vinoshipper Injector'
-	);
-
-	return $categories;
-}
-add_filter('block_categories_all', 'vinoshipper_injector_block_categories_init');
 function vinoshipper_injector_block_init() {
 	register_block_type( __DIR__ . '/build/product-catalog' );
 	register_block_type( __DIR__ . '/build/available-in' );

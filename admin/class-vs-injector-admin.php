@@ -103,8 +103,8 @@ class Vs_Injector_Admin {
 		 * class.
 		 */
 
-		 wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
-		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-admin.js', [ 'jquery' ], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-admin.js', [ 'jquery' ], $this->version, false );
 	}
 
 	/**
