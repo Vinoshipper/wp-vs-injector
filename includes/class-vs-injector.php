@@ -153,6 +153,7 @@ class Vs_Injector {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'settings_init' );
+		$this->loader->add_action( 'admin_head', $plugin_admin, 'add_header_code' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'options_page' );
 	}
 

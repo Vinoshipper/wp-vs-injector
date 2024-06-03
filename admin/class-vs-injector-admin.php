@@ -103,7 +103,48 @@ class Vs_Injector_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-admin.js', [ 'jquery' ], $this->version, false );
+		 wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
+		 wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-admin.js', [ 'jquery' ], $this->version, false );
+	}
+
+	/**
+	 * Add the Vinoshipper Injector code and initialize functions.
+	 * This forces settings that are better for admin based views.
+	 */
+	public function add_header_code() {
+		$tempAccountId = get_option( 'vs_injector_account_id' );
+
+		if ( is_numeric( $tempAccountId ) ) {
+			$tempTheme     = get_option( 'vs_injector_theme' );
+			$tempThemeDark = boolval( get_option( 'vs_injector_theme_dark' ) );
+			$computedTheme = null;
+
+			if ( $tempTheme && $tempThemeDark ) {
+				$computedTheme = $tempTheme . '-dark';
+			} elseif ( $tempTheme ) {
+				$computedTheme = $tempTheme;
+			} elseif ( $tempThemeDark ) {
+				$computedTheme = 'dark';
+			}
+
+			$settings = [
+				'theme'        => $computedTheme,
+				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
+				'cartButton'   => false,
+			];
+			echo '<script type="text/javascript">
+			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
+			window.document.addEventListener(\'vinoshipper:loaded\', () => {
+				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+			});
+			if (window.Vinoshipper) {
+				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+			}
+			</script>
+			';
+		} else {
+			echo '<script type="text/javascript">console.error("Vinoshipper Injector: Account ID not defined.");</script>';
+		}
 	}
 
 	/**
