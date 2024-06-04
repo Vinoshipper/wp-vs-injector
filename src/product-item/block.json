@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "vinoshipper-injector/product-item",
+	"version": "0.1.0",
+	"title": "Product Item",
+	"category": "vinoshipper",
+	"icon": "admin-page",
+	"description": "Display one product with image, description, and other information.",
+	"keywords": [
+		"vs"
+	],
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "vinoshipper-injector",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php",
+	"attributes": {
+		"productId": {
+			"type": "number",
+			"default": null
+		},
+		"accountId": {
+			"type": "number",
+			"default": null
+		},
+		"cards": {
+			"type": "boolean",
+			"default": false
+		},
+		"image": {
+			"type": "boolean",
+			"default": true
+		},
+		"descForce": {
+			"type": "boolean",
+			"default": false
+		}
+	}
+}

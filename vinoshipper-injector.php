@@ -118,6 +118,7 @@ add_filter( 'block_categories_all', 'vinoshipper_injector_block_categories_init'
  */
 function vinoshipper_injector_block_init() {
 	register_block_type( __DIR__ . '/build/product-catalog' );
+	register_block_type( __DIR__ . '/build/product-item' );
 	register_block_type( __DIR__ . '/build/available-in' );
 }
 add_action( 'init', 'vinoshipper_injector_block_init' );
