@@ -47,13 +47,21 @@ class VsInjectorCore {
 					if ( action.type === 'SET_ALL' ) {
 						const productsAsOptions = action.payload.products.map(
 							( product ) => {
+								const element = document.createElement( 'div' );
+								element.innerHTML = product.displayName;
+
 								return {
-									label: `${ product.displayName }`,
+									label: element.textContent,
 									value: product.id,
 									disabled: false,
 								};
 							}
 						);
+						productsAsOptions.unshift( {
+							label: 'Select a Product',
+							value: null,
+							disabled: false,
+						} );
 						return {
 							...state,
 							producer: action.payload.producer,

@@ -23,7 +23,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		targetAccountId = accountId;
 	}
 
-	const { producer, productsOptions } = useSelect( ( select ) => {
+	const { producer, products, productsOptions } = useSelect( ( select ) => {
 		return {
 			...select( 'vsInjectorProductItemStore' ).getAll(),
 		};
@@ -48,6 +48,25 @@ export default function Edit( { attributes, setAttributes } ) {
 			} );
 		}
 		return returnOptionsDefault;
+	}
+
+	function getCurrentProduct() {
+		if ( productId ) {
+			const returnProduct = products.find( ( product ) => {
+				return product.id === productId;
+			} );
+			if ( returnProduct ) {
+				return returnProduct;
+			}
+			return {
+				id: productId,
+				displayName: null,
+			};
+		}
+		return {
+			id: null,
+			displayName: null,
+		};
 	}
 
 	function getProducer() {
@@ -146,12 +165,29 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div className="vs-injector-block-editor-content">
 				<div className="vs-injector-block-product-item">
 					<h2>Product Item</h2>
-					{ ! targetAccountId && (
+					{ targetAccountId && (
 						<div>
-							<ul>
-								{ productId && (
-									<li>Product ID: { productId }</li>
+							<h3>
+								{ getCurrentProduct().displayName && (
+									<span
+										dangerouslySetInnerHTML={ {
+											__html: getCurrentProduct()
+												.displayName,
+										} }
+									></span>
 								) }
+								{ ! getCurrentProduct().displayName &&
+									getCurrentProduct().id && (
+										<span>
+											Product: #
+											{ getCurrentProduct()?.id }
+										</span>
+									) }
+								{ ! productId && (
+									<strong>Warning: No Product Set!</strong>
+								) }
+							</h3>
+							<ul>
 								{ cards && (
 									<li>Display in the Cards Layout.</li>
 								) }
@@ -170,7 +206,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							</p>
 						</div>
 					) }
-					{ targetAccountId && (
+					{ ! targetAccountId && (
 						<div className="vs-injector-block-error">
 							<h3>Vinoshipper Account ID: Missing</h3>
 							<p>
