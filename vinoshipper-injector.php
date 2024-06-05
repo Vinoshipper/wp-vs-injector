@@ -117,6 +117,7 @@ add_filter( 'block_categories_all', 'vinoshipper_injector_block_categories_init'
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function vinoshipper_injector_block_init() {
+	register_block_type( __DIR__ . '/build/core' );
 	register_block_type( __DIR__ . '/build/product-catalog' );
 	register_block_type( __DIR__ . '/build/product-item' );
 	register_block_type( __DIR__ . '/build/available-in' );

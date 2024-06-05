@@ -155,6 +155,7 @@ class Vs_Injector {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'settings_init' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'add_header_code' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'options_page' );
+		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'rest_proxy_register' );
 	}
 
 	/**

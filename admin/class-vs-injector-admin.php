@@ -68,20 +68,7 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Vs_Injector_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Vs_Injector_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/vs-injector-admin.css', [], $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugins_url( '../build/core/index.css', __FILE__ ), [], $this->version, 'all' );
 	}
 
 	/**
@@ -90,21 +77,8 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Vs_Injector_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Vs_Injector_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/vs-injector-admin.js', [ 'jquery' ], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugins_url( 'build/core/index.js', __FILE__ ), [], $this->version, false );
 	}
 
 	/**
@@ -144,6 +118,65 @@ class Vs_Injector_Admin {
 			';
 		} else {
 			echo '<script type="text/javascript">console.error("Vinoshipper Injector: Account ID not defined.");</script>';
+		}
+	}
+
+	/**
+	 * Register REST endpoints for Admin Block UI.
+	 */
+	public function rest_proxy_register() {
+		register_rest_route(
+			'vinoshipper-injector/v1',
+			'/products',
+			[
+				'permission_callback' => [ $this, 'rest_proxy_permissions_check' ],
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'rest_proxy_products' ],
+			]
+		);
+	}
+
+	/**
+	 * REST permission callback
+	 */
+	public function rest_proxy_permissions_check() {
+		// Restrict endpoint to only users who have the edit_posts capability.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return new WP_Error( 'rest_forbidden', esc_html__( 'Access deined.', 'vinoshipper-injector' ), [ 'status' => 401 ] );
+		}
+		return true;
+	}
+
+	/**
+	 * REST endpoint for Products list.
+	 *
+	 * @param    any $data Data from products request.
+	 */
+	public function rest_proxy_products( $data ) {
+		$accountId = get_option( 'vs_injector_account_id', null );
+		if ( $accountId ) {
+			$fetch_url    = 'https://vinoshipper.com/api/v3/feeds/vs/' . $accountId . '/products';
+			$api_response = wp_remote_get( $fetch_url );
+
+			if ( empty( $api_response ) || 200 !== $api_response['response']['code'] ) {
+				return new WP_Error(
+					'error',
+					[
+						'input'    => $data,
+						'response' => $api_response,
+					]
+				);
+			}
+
+			return new WP_REST_Response( json_decode( $api_response['body'] ) );
+		} else {
+			return new WP_Error(
+				'error',
+				[
+					'input'    => $data,
+					'response' => 'No Account ID Defined',
+				]
+			);
 		}
 	}
 

@@ -5,35 +5,16 @@
  */
 
 .wp-block-vinoshipper-injector-product-catalog {
-	.vs-injector-block-editor-content {
-		.vs-injector-block-title {
-			font-weight: bold;
-		}
-
-		p {
-			margin-bottom: 0;
-		}
-
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin-top: 0;
-			margin-bottom: 0;
-		}
-	}
 
 	.vs-injector-block-available-in {
-		border: 2px solid gray;
+		border: 2px solid #808080;
 		margin: 0 0 12px 0;
 		padding: 1rem;
 		border-radius: 0.3rem;
 	}
 
 	.vs-injector-block-product-catalog {
-		border: 2px solid gray;
+		border: 2px solid #808080;
 		margin: 0 0 12px 0;
 		padding: 1rem;
 		border-radius: 0.3rem;
