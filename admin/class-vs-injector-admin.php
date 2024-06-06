@@ -134,6 +134,15 @@ class Vs_Injector_Admin {
 				'callback'            => [ $this, 'rest_proxy_products' ],
 			]
 		);
+		register_rest_route(
+			'vinoshipper-injector/v1',
+			'/clubs',
+			[
+				'permission_callback' => [ $this, 'rest_proxy_permissions_check' ],
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'rest_proxy_clubs' ],
+			]
+		);
 	}
 
 	/**
@@ -156,6 +165,39 @@ class Vs_Injector_Admin {
 		$accountId = get_option( 'vs_injector_account_id', null );
 		if ( $accountId ) {
 			$fetch_url    = 'https://vinoshipper.com/api/v3/feeds/vs/' . $accountId . '/products';
+			$api_response = wp_remote_get( $fetch_url );
+
+			if ( empty( $api_response ) || 200 !== $api_response['response']['code'] ) {
+				return new WP_Error(
+					'error',
+					[
+						'input'    => $data,
+						'response' => $api_response,
+					]
+				);
+			}
+
+			return new WP_REST_Response( json_decode( $api_response['body'] ) );
+		} else {
+			return new WP_Error(
+				'error',
+				[
+					'input'    => $data,
+					'response' => 'No Account ID Defined',
+				]
+			);
+		}
+	}
+
+	/**
+	 * REST endpoint for Clubs list.
+	 *
+	 * @param    any $data Data from products request.
+	 */
+	public function rest_proxy_clubs( $data ) {
+		$accountId = get_option( 'vs_injector_account_id', null );
+		if ( $accountId ) {
+			$fetch_url    = 'https://vinoshipper.com/api/v3/club/subscribe/' . $accountId;
 			$api_response = wp_remote_get( $fetch_url );
 
 			if ( empty( $api_response ) || 200 !== $api_response['response']['code'] ) {

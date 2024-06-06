@@ -13,10 +13,11 @@ import './index.scss';
 class VsInjectorCore {
 	constructor() {
 		this.vs_injector_init();
-		this.initStore();
+		this.initProductsStore();
+		this.initClubsStore();
 	}
 
-	initStore() {
+	initProductsStore() {
 		const initialState = {
 			producer: null,
 			products: [],
@@ -115,6 +116,54 @@ class VsInjectorCore {
 			}
 		);
 		register( vsInjectorProductItemStore );
+	}
+
+	initClubsStore() {
+		const initialState = {
+			availableClubs: [],
+			clubsAsOptions: [],
+		};
+
+		const actions = {
+			setAll: ( endpointUpdate ) => ( {
+				type: 'SET_ALL',
+				payload: endpointUpdate,
+			} ),
+		};
+
+		const vsInjectorClubsStore = createReduxStore( 'vsInjectorClubsStore', {
+			initialState,
+			actions,
+			reducer( state = initialState, action ) {
+				if ( action.type === 'SET_ALL' ) {
+					return {
+						...state,
+						availableClubs: action.payload.availableClubs,
+					};
+				}
+				return state;
+			},
+			selectors: {
+				getAll( state ) {
+					return state;
+				},
+			},
+			resolvers: {
+				async getAll() {
+					return await apiFetch( {
+						method: 'GET',
+						path: '/vinoshipper-injector/v1/clubs',
+					} )
+						.then( ( results ) => {
+							return actions.setAll( results );
+						} )
+						.catch( ( errors ) => {
+							return Promise.reject( errors );
+						} );
+				},
+			},
+		} );
+		register( vsInjectorClubsStore );
 	}
 
 	vs_generate_logo() {

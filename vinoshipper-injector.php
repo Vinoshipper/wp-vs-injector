@@ -122,5 +122,6 @@ function vinoshipper_injector_block_init() {
 	register_block_type( __DIR__ . '/build/product-item' );
 	register_block_type( __DIR__ . '/build/available-in' );
 	register_block_type( __DIR__ . '/build/add-to-cart' );
+	register_block_type( __DIR__ . '/build/club-registration' );
 }
 add_action( 'init', 'vinoshipper_injector_block_init' );
