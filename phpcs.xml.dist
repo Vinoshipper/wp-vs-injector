@@ -1,60 +1,115 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="VSInjector" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
-	<description>Coding standards for the Vinoshipper Injector WordPress plugin</description>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Vinoshipper Injector for WordPress" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PHPCSStandards/PHP_CodeSniffer/master/phpcs.xsd">
 
-	<!-- What to scan: include any root-level PHP files, and the /src folder -->
+	<description>A custom set of rules to check for a WPized WordPress project</description>
+
+	<!--
+	#############################################################################
+	COMMAND LINE ARGUMENTS
+	https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-Ruleset
+	#############################################################################
+	-->
+
 	<file>./vinoshipper-injector.php</file>
 	<file>./admin</file>
 	<file>./includes</file>
 	<file>./public</file>
 	<file>./src</file>
+
+	<!-- Exclude WP Core folders and files from being checked. -->
 	<exclude-pattern>./phpstan/*</exclude-pattern>
 	<exclude-pattern>*/**/tests/</exclude-pattern>
-	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/build/</exclude-pattern>
 
-	<!--
-	Prevent errors caused by WordPress Coding Standards not supporting PHP 8.0+.
-	See: https://github.com/WordPress/WordPress-Coding-Standards/issues/2035
-	See: https://github.com/WordPress/WordPress-Coding-Standards/issues/2035#issuecomment-1325532520
-	-->
-	<ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
+	<!-- Exclude the Composer Vendor directory. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
 
-	<!--How to scan: include CLI args so you don't need to pass them manually -->
+	<!-- Exclude the Node Modules directory. -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<!-- Exclude minified Javascript files. -->
+	<exclude-pattern>*.min.js</exclude-pattern>
+
 	<!--Usage instructions: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage -->
 	<!--
 		p flag: Show progress of the run.
 		s flag: Show sniff codes in all reports.
 	-->
 	<arg value="sp"/>
+
 	<!-- Strip the file paths down to the relevant bit -->
 	<arg name="basepath" value="./"/>
+
 	<!-- Enable colors in report -->
 	<arg name="colors" />
+
 	<!-- Only lint php files by default -->
 	<arg name="extensions" value="php" />
+
 	<!-- Whenever possible, cache the scan results and re-use those for unchanged files on the next scan. -->
 	<arg name="cache" value="tests/_output/cache.json" />
+
 	<!-- Check 20 files in parallel. -->
 	<arg name="parallel" value="20" />
+
 	<!-- Set severity to 1 to see everything that isn't effectively turned off. -->
 	<arg name="severity" value="1" />
 
-	<!-- Ruleset Config: set these to match your project constraints-->
+	<!--
+	#############################################################################
+	SET UP THE RULESETS
+	#############################################################################
+	-->
+
+	<!-- Include the WordPress-Extra standard. -->
+	<rule ref="WordPress-Extra">
+		<!--
+		We may want a middle ground though. The best way to do this is add the
+		entire ruleset, then rule by rule, remove ones that don't suit a project.
+		We can do this by running `phpcs` with the '-s' flag, which allows us to
+		see the names of the sniffs reporting errors.
+		Once we know the sniff names, we can opt to exclude sniffs which don't
+		suit our project like so.
+
+		The below two examples just show how you can exclude rules/error codes.
+		They are not intended as advice about which sniffs to exclude.
+		-->
+
+		<!--
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+		<exclude name="Modernize.FunctionCalls.Dirname.Nested"/>
+		-->
+	</rule>
+
+	<!-- Let's also check that everything is properly documented. -->
+	<rule ref="WordPress-Docs"/>
+
+	<!-- Add in some extra rules from other standards. -->
+	<rule ref="Generic.Commenting.Todo"/>
+
+	<!-- Check for PHP cross-version compatibility. -->
+	<config name="testVersion" value="7.4-"/>
+	<rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.php</include-pattern>
+	</rule>
 
 	<!--
-		Tests for PHP version compatibility.
-		https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#Recomended-additional-rulesets
+	#############################################################################
+	SNIFF SPECIFIC CONFIGURATION
+	#############################################################################
 	-->
-	<config name="testVersion" value="7.1-"/>
 
 	<!--
-		Tests for WordPress version compatibility.
-		https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
-	-->
-	<config name="minimum_wp_version" value="5.0"/>
+	To get the optimal benefits of using WordPressCS, we should add a couple of
+	custom properties.
+	Adjust the values of these properties to fit our needs.
 
-	<!-- Individual rule configuration -->
+	For information on additional custom properties available, check out
+	the wiki:
+	https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
+	-->
+	<config name="minimum_wp_version" value="6.0"/>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
@@ -62,54 +117,50 @@
 			</property>
 		</properties>
 	</rule>
-	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="blank_line_check" value="true"/>
+			<property name="prefixes" type="array">
+				<element value="vs_injector"/>
+			</property>
 		</properties>
 	</rule>
-	<rule ref="Squiz.Commenting.FunctionComment">
-		<properties>
-			<property name="skipIfInheritdoc" value="true" />
-		</properties>
+
+	<rule ref="WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore">
+		<exclude-pattern>*</exclude-pattern>
 	</rule>
 
-	<!-- Rules -->
+	<!--
+	#############################################################################
+	SELECTIVE EXCLUSIONS
+	Exclude specific files for specific sniffs and/or exclude sub-groups in sniffs.
+	#############################################################################
+	-->
 
-	<!-- Load PHPCompatibilityWP standards -->
-	<rule ref="PHPCompatibilityWP" />
+	<!--
+	Sometimes, you may want to exclude a certain directory, like your tests,
+	for select sniffs.
+	The below examples demonstrate how to do this.
 
-	<!-- Load WordPress Coding standards -->
-	<rule ref="WordPress">
-		<!-- Definitely should not be added back -->
-		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
-		<exclude name="Universal.Operators.DisallowShortTernary.Found"/>
-		<exclude name="WordPress.Files.FileName"/>
-		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
-		<exclude name="WordPress.WP.Capabilities.Undetermined" />
+	In the example, the `GlobalVariablesOverride` rule is excluded for test files
+	as it is sometimes necessary to overwrite WP globals in test situations (just
+	don't forget to restore them after the test!).
 
-		<!-- This would be a breaking change to fix-->
-		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
-		<exclude name="Generic.CodeAnalysis.UnusedFunctionParameter" />
+	Along the same lines, PHPUnit is getting stricter about using PSR-4 file names,
+	so excluding test files from the `WordPress.Files.Filename` sniff can be a
+	legitimate exclusion.
+
+	For more information on ruleset configuration optiones, check out the PHPCS wiki:
+	https://github.com/PHPCSStandards/PHP_CodeSniffer/wiki/Annotated-Ruleset
+	-->
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>/path/to/Tests/*Test\.php</exclude-pattern>
 	</rule>
-
-	<!-- Tests for inline documentation of code -->
-	<rule ref="WordPress-Docs">
-		<!-- Conflicts with FQCN -->
-		<exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint" />
-		<!-- Conflicts with b/c in AbstractConnectionResolver -->
-		<exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
-
-		<!-- Should probably be added back -->
-		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
-		<exclude name="Squiz.Commenting.ClassComment.Missing" />
-		<exclude name="Squiz.Commenting.FileComment.Missing" />
-		<exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
-		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
-		<exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
-		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/path/to/Tests/*Test\.php</exclude-pattern>
 	</rule>
-
-	<!-- Enforce short array syntax -->
-	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 
 </ruleset>

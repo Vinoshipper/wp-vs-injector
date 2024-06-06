@@ -1,25 +1,27 @@
 <?php
 /**
+ * Vinoshipper Injector: Product Catalog, Client Render
+ *
  * @package VinoshipperInjector
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-$wrapper_pre_attributes = [
+$vs_injector_wrapper_pre_attributes = array(
 	'class' => 'vs-products',
-];
+);
 
 if ( isset( $attributes['cards'] ) ) {
-	$wrapper_pre_attributes['data-vs-cards'] = boolval( $attributes['cards'] ) ? 'true' : 'false';
+	$vs_injector_wrapper_pre_attributes['data-vs-cards'] = boolval( $attributes['cards'] ) ? 'true' : 'false';
 }
 if ( isset( $attributes['list'] ) ) {
-	$wrapper_pre_attributes['data-vs-list'] = (int) $attributes['accountId'];
+	$vs_injector_wrapper_pre_attributes['data-vs-list'] = (int) $attributes['accountId'];
 }
 if ( isset( $attributes['available'] ) ) {
-	$wrapper_pre_attributes['data-vs-available'] = boolval( $attributes['available'] ) ? 'true' : 'false';
+	$vs_injector_wrapper_pre_attributes['data-vs-available'] = boolval( $attributes['available'] ) ? 'true' : 'false';
 }
 if ( isset( $attributes['tooltip'] ) ) {
-	$wrapper_pre_attributes['data-vs-tooltips'] = boolval( $attributes['tooltip'] ) ? 'true' : 'false';
+	$vs_injector_wrapper_pre_attributes['data-vs-tooltips'] = boolval( $attributes['tooltip'] ) ? 'true' : 'false';
 }
 
 ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes( $wrapper_pre_attributes ) ); ?>></div>
+<div <?php echo wp_kses_data( get_block_wrapper_attributes( $vs_injector_wrapper_pre_attributes ) ); ?>></div>

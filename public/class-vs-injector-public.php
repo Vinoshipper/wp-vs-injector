@@ -66,40 +66,40 @@ class Vs_Injector_Public {
 	 * @since    0.1.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', array(), $this->version, false );
 	}
 
 	/**
 	 * Add the Vinoshipper Injector code and initialize functions.
 	 */
 	public function add_header_code() {
-		$tempAccountId = get_option( 'vs_injector_account_id' );
+		$temp_account_id = get_option( 'vs_injector_account_id' );
 
-		if ( is_numeric( $tempAccountId ) ) {
-			$tempTheme     = get_option( 'vs_injector_theme' );
-			$tempThemeDark = boolval( get_option( 'vs_injector_theme_dark' ) );
-			$computedTheme = null;
+		if ( is_numeric( $temp_account_id ) ) {
+			$temp_theme      = get_option( 'vs_injector_theme' );
+			$temp_theme_dark = boolval( get_option( 'vs_injector_theme_dark' ) );
+			$computed_theme  = null;
 
-			if ( $tempTheme && $tempThemeDark ) {
-				$computedTheme = $tempTheme . '-dark';
-			} elseif ( $tempTheme ) {
-				$computedTheme = $tempTheme;
-			} elseif ( $tempThemeDark ) {
-				$computedTheme = 'dark';
+			if ( $temp_theme && $temp_theme_dark ) {
+				$computed_theme = $temp_theme . '-dark';
+			} elseif ( $temp_theme ) {
+				$computed_theme = $temp_theme;
+			} elseif ( $temp_theme_dark ) {
+				$computed_theme = 'dark';
 			}
 
-			$settings = [
-				'theme'        => $computedTheme,
+			$settings = array(
+				'theme'        => $computed_theme,
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
 				'cartButton'   => boolval( get_option( 'vs_injector_cart_button', true ) ),
-			];
+			);
 			echo '<script type="text/javascript">
 			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
 			window.document.addEventListener(\'vinoshipper:loaded\', () => {
-				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			});
 			if (window.Vinoshipper) {
-				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			}
 			</script>
 			';
@@ -115,55 +115,55 @@ class Vs_Injector_Public {
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_account_id',
-			[
+			array(
 				'type'         => 'number',
 				'description'  => 'The Vinoshipper Account ID.',
 				'show_in_rest' => true,
 				'default'      => null,
-			]
+			)
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_theme',
-			[
+			array(
 				'type'         => 'string',
 				'description'  => 'Global theme setting.',
 				'show_in_rest' => true,
 				'default'      => null,
-			]
+			)
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_theme_dark',
-			[
+			array(
 				'type'         => 'boolean',
 				'description'  => 'Enable Dark Mode.',
 				'show_in_rest' => true,
 				'default'      => false,
-			]
+			)
 		);
 
-		// Cart Options
+		// Cart Options.
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_cart_position',
-			[
+			array(
 				'type'              => 'string',
 				'description'       => 'Position the cart to either the start or end of the screen.',
 				'show_in_rest'      => true,
 				'default'           => 'end',
-				'sanitize_callback' => [ $this, 'sanitize_cart_position' ],
-			]
+				'sanitize_callback' => array( $this, 'sanitize_cart_position' ),
+			)
 		);
 		register_setting(
 			'vs_injector_settings',
 			'vs_injector_cart_button',
-			[
+			array(
 				'type'         => 'boolean',
 				'description'  => 'Display the cart button',
 				'show_in_rest' => true,
 				'default'      => true,
-			]
+			)
 		);
 	}
 
@@ -173,8 +173,8 @@ class Vs_Injector_Public {
 	 * @param string $settings The input string.
 	 */
 	public function sanitize_cart_position( $settings ) {
-		$testingString = strtolower( sanitize_text_field( $settings ) );
-		if ( 'end' === $testingString ) {
+		$testing_string = strtolower( sanitize_text_field( $settings ) );
+		if ( 'end' === $testing_string ) {
 			return 'end';
 		} else {
 			return 'start';

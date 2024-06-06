@@ -1,3 +1,9 @@
+/**
+ * Vinoshipper Injector for WordPress: Core Resources
+ *
+ * @package
+ */
+
 import { createReduxStore, register } from '@wordpress/data';
 import { updateCategory } from '@wordpress/blocks';
 import apiFetch from '@wordpress/api-fetch';
@@ -50,7 +56,6 @@ class VsInjectorCore {
 							( product ) => {
 								const element = document.createElement( 'div' );
 								element.innerHTML = product.displayName;
-
 								return {
 									label: element.textContent,
 									value: product.id,

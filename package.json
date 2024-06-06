@@ -14,7 +14,9 @@
 		"lint:js:fix": "wp-scripts lint-js --fix",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-copy-php"
+		"start": "wp-scripts start --webpack-copy-php",
+		"cs:check": "composer run-script check-cs",
+		"cs:fix": "composer run-script fix-cs"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^27.9.0"

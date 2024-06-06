@@ -68,7 +68,7 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugins_url( '../build/core/index.css', __FILE__ ), [], $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugins_url( '../build/core/index.css', __FILE__ ), array(), $this->version, 'all' );
 	}
 
 	/**
@@ -77,8 +77,8 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', [], $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugins_url( 'build/core/index.js', __FILE__ ), [], $this->version, false );
+		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', array(), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugins_url( 'build/core/index.js', __FILE__ ), array(), $this->version, false );
 	}
 
 	/**
@@ -86,33 +86,33 @@ class Vs_Injector_Admin {
 	 * This forces settings that are better for admin based views.
 	 */
 	public function add_header_code() {
-		$tempAccountId = get_option( 'vs_injector_account_id' );
+		$temp_account_id = get_option( 'vs_injector_account_id' );
 
-		if ( is_numeric( $tempAccountId ) ) {
-			$tempTheme     = get_option( 'vs_injector_theme' );
-			$tempThemeDark = boolval( get_option( 'vs_injector_theme_dark' ) );
-			$computedTheme = null;
+		if ( is_numeric( $temp_account_id ) ) {
+			$temp_theme      = get_option( 'vs_injector_theme' );
+			$temp_theme_dark = boolval( get_option( 'vs_injector_theme_dark' ) );
+			$computed_theme  = null;
 
-			if ( $tempTheme && $tempThemeDark ) {
-				$computedTheme = $tempTheme . '-dark';
-			} elseif ( $tempTheme ) {
-				$computedTheme = $tempTheme;
-			} elseif ( $tempThemeDark ) {
-				$computedTheme = 'dark';
+			if ( $temp_theme && $temp_theme_dark ) {
+				$computed_theme = $temp_theme . '-dark';
+			} elseif ( $temp_theme ) {
+				$computed_theme = $temp_theme;
+			} elseif ( $temp_theme_dark ) {
+				$computed_theme = 'dark';
 			}
 
-			$settings = [
-				'theme'        => $computedTheme,
+			$settings = array(
+				'theme'        => $computed_theme,
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
 				'cartButton'   => false,
-			];
+			);
 			echo '<script type="text/javascript">
 			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
 			window.document.addEventListener(\'vinoshipper:loaded\', () => {
-				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			});
 			if (window.Vinoshipper) {
-				window.Vinoshipper.init(' . esc_html( $tempAccountId ) . ', window.wpVsInjectorSettings);
+				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			}
 			</script>
 			';
@@ -128,20 +128,20 @@ class Vs_Injector_Admin {
 		register_rest_route(
 			'vinoshipper-injector/v1',
 			'/products',
-			[
-				'permission_callback' => [ $this, 'rest_proxy_permissions_check' ],
+			array(
+				'permission_callback' => array( $this, 'rest_proxy_permissions_check' ),
 				'methods'             => 'GET',
-				'callback'            => [ $this, 'rest_proxy_products' ],
-			]
+				'callback'            => array( $this, 'rest_proxy_products' ),
+			)
 		);
 		register_rest_route(
 			'vinoshipper-injector/v1',
 			'/clubs',
-			[
-				'permission_callback' => [ $this, 'rest_proxy_permissions_check' ],
+			array(
+				'permission_callback' => array( $this, 'rest_proxy_permissions_check' ),
 				'methods'             => 'GET',
-				'callback'            => [ $this, 'rest_proxy_clubs' ],
-			]
+				'callback'            => array( $this, 'rest_proxy_clubs' ),
+			)
 		);
 	}
 
@@ -151,7 +151,7 @@ class Vs_Injector_Admin {
 	public function rest_proxy_permissions_check() {
 		// Restrict endpoint to only users who have the edit_posts capability.
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			return new WP_Error( 'rest_forbidden', esc_html__( 'Access deined.', 'vinoshipper-injector' ), [ 'status' => 401 ] );
+			return new WP_Error( 'rest_forbidden', esc_html__( 'Access deined.', 'vinoshipper-injector' ), array( 'status' => 401 ) );
 		}
 		return true;
 	}
@@ -162,18 +162,18 @@ class Vs_Injector_Admin {
 	 * @param    any $data Data from products request.
 	 */
 	public function rest_proxy_products( $data ) {
-		$accountId = get_option( 'vs_injector_account_id', null );
-		if ( $accountId ) {
-			$fetch_url    = 'https://vinoshipper.com/api/v3/feeds/vs/' . $accountId . '/products';
+		$account_id = get_option( 'vs_injector_account_id', null );
+		if ( $account_id ) {
+			$fetch_url    = 'https://vinoshipper.com/api/v3/feeds/vs/' . $account_id . '/products';
 			$api_response = wp_remote_get( $fetch_url );
 
 			if ( empty( $api_response ) || 200 !== $api_response['response']['code'] ) {
 				return new WP_Error(
 					'error',
-					[
+					array(
 						'input'    => $data,
 						'response' => $api_response,
-					]
+					)
 				);
 			}
 
@@ -181,10 +181,10 @@ class Vs_Injector_Admin {
 		} else {
 			return new WP_Error(
 				'error',
-				[
+				array(
 					'input'    => $data,
 					'response' => 'No Account ID Defined',
-				]
+				)
 			);
 		}
 	}
@@ -195,18 +195,18 @@ class Vs_Injector_Admin {
 	 * @param    any $data Data from products request.
 	 */
 	public function rest_proxy_clubs( $data ) {
-		$accountId = get_option( 'vs_injector_account_id', null );
-		if ( $accountId ) {
-			$fetch_url    = 'https://vinoshipper.com/api/v3/club/subscribe/' . $accountId;
+		$account_id = get_option( 'vs_injector_account_id', null );
+		if ( $account_id ) {
+			$fetch_url    = 'https://vinoshipper.com/api/v3/club/subscribe/' . $account_id;
 			$api_response = wp_remote_get( $fetch_url );
 
 			if ( empty( $api_response ) || 200 !== $api_response['response']['code'] ) {
 				return new WP_Error(
 					'error',
-					[
+					array(
 						'input'    => $data,
 						'response' => $api_response,
-					]
+					)
 				);
 			}
 
@@ -214,10 +214,10 @@ class Vs_Injector_Admin {
 		} else {
 			return new WP_Error(
 				'error',
-				[
+				array(
 					'input'    => $data,
 					'response' => 'No Account ID Defined',
-				]
+				)
 			);
 		}
 	}
@@ -231,7 +231,7 @@ class Vs_Injector_Admin {
 			'Vinoshipper',
 			'manage_options',
 			'vs_injector_settings',
-			[ $this, 'vs_injector_settings_page_html' ],
+			array( $this, 'vs_injector_settings_page_html' ),
 			$this->vs_icon
 		);
 	}
@@ -248,70 +248,70 @@ class Vs_Injector_Admin {
 	 */
 	public function settings_init() {
 
-		// Section: General
+		// Section: General.
 		add_settings_section(
 			'vs_injector_settings_section',
 			'General Settings',
-			[ $this, 'settings_section_general_callback' ],
+			array( $this, 'settings_section_general_callback' ),
 			'vs_injector_settings_section_general'
 		);
 		add_settings_field(
 			'vs_injector_account_id_field',
 			'Vinoshipper Account ID',
-			[ $this, 'settings_account_id_input' ],
+			array( $this, 'settings_account_id_input' ),
 			'vs_injector_settings_section_general',
 			'vs_injector_settings_section',
-			[
+			array(
 				'label_for' => 'vs_injector_account_id',
-			]
+			)
 		);
 		add_settings_field(
 			'vs_injector_theme_field',
 			'Theme',
-			[ $this, 'settings_theme_input' ],
+			array( $this, 'settings_theme_input' ),
 			'vs_injector_settings_section_general',
 			'vs_injector_settings_section',
-			[
+			array(
 				'label_for' => 'vs_injector_theme',
-			]
+			)
 		);
 		add_settings_field(
 			'vs_injector_theme_dark_field',
 			'Theme: Enable Dark Mode',
-			[ $this, 'settings_theme_dark_input' ],
+			array( $this, 'settings_theme_dark_input' ),
 			'vs_injector_settings_section_general',
 			'vs_injector_settings_section',
-			[
+			array(
 				'label_for' => 'vs_injector_theme_dark',
-			]
+			)
 		);
 
-		// Section: Cart Options
+		// Section: Cart Options.
 		add_settings_section(
 			'vs_injector_settings_section',
 			'Cart Options',
-			[ $this, 'settings_section_cart_callback' ],
+			array( $this, 'settings_section_cart_callback' ),
 			'vs_injector_settings_section_cart'
 		);
 		add_settings_field(
 			'vs_injector_cart_position_field',
 			'Cart Position',
-			[ $this, 'settings_cart_position_input' ],
+			array( $this, 'settings_cart_position_input' ),
 			'vs_injector_settings_section_cart',
 			'vs_injector_settings_section',
-			[
+			array(
 				'label_for' => 'vs_injector_cart_position',
-			]
+			)
 		);
 		add_settings_field(
 			'vs_injector_cart_button_field',
 			'Display Cart Button',
-			[ $this, 'settings_cart_button_input' ],
+			array( $this, 'settings_cart_button_input' ),
 			'vs_injector_settings_section_cart',
 			'vs_injector_settings_section',
-			[
+			array(
 				'label_for' => 'vs_injector_cart_button',
-			]
+			)
 		);
 	}
 
@@ -335,10 +335,10 @@ class Vs_Injector_Admin {
 	 * Theme Setting UI
 	 */
 	public function settings_theme_input() {
-		$selectedOption = get_option( 'vs_injector_theme' );
+		$selected_option = get_option( 'vs_injector_theme' );
 		echo '<select id="vs_injector_theme" name="vs_injector_theme">';
 		foreach ( VS_INJECTOR_THEMES as $key => $value ) {
-			if ( $value === $selectedOption ) {
+			if ( $value === $selected_option ) {
 				echo '<option value="' . esc_attr( $value ) . '" selected>' . esc_html( $key ) . '</option>';
 			} else {
 				echo '<option value="' . esc_attr( $value ) . '">' . esc_html( $key ) . '</option>';
@@ -352,8 +352,8 @@ class Vs_Injector_Admin {
 	 * Dark Theme Setting UI
 	 */
 	public function settings_theme_dark_input() {
-		$selectedOption = get_option( 'vs_injector_theme_dark' );
-		echo '<input type="checkbox" id="vs_injector_theme_dark" name="vs_injector_theme_dark" value="1"' . checked( 1, $selectedOption, false ) . '/>';
+		$selected_option = get_option( 'vs_injector_theme_dark' );
+		echo '<input type="checkbox" id="vs_injector_theme_dark" name="vs_injector_theme_dark" value="1"' . checked( 1, $selected_option, false ) . '/>';
 		echo '<p>Enables dark mode for selected theme.</p>';
 	}
 
@@ -368,10 +368,10 @@ class Vs_Injector_Admin {
 	 * Cart Position Setting UI
 	 */
 	public function settings_cart_position_input() {
-		$selectedOption = get_option( 'vs_injector_cart_position' );
+		$selected_option = get_option( 'vs_injector_cart_position' );
 		echo '<select id="vs_injector_cart_position" name="vs_injector_cart_position">';
 		foreach ( VS_INJECTOR_START_END as $value ) {
-			if ( $value === $selectedOption ) {
+			if ( $value === $selected_option ) {
 				echo '<option value="' . esc_attr( $value ) . '" selected>' . esc_html( ucfirst( $value ) ) . '</option>';
 			} else {
 				echo '<option value="' . esc_attr( $value ) . '">' . esc_html( ucfirst( $value ) ) . '</option>';
@@ -384,8 +384,8 @@ class Vs_Injector_Admin {
 	 * Cart Button Display Setting UI
 	 */
 	public function settings_cart_button_input() {
-		$selectedOption = get_option( 'vs_injector_cart_button' );
-		echo '<input type="checkbox" id="vs_injector_cart_button" name="vs_injector_cart_button" value="1"' . checked( 1, $selectedOption, false ) . '/>';
+		$selected_option = get_option( 'vs_injector_cart_button' );
+		echo '<input type="checkbox" id="vs_injector_cart_button" name="vs_injector_cart_button" value="1"' . checked( 1, $selected_option, false ) . '/>';
 		echo '<p>Display the cart button.</p>';
 		echo '<p>Note: If you disable the cart button, you will need to implement your own cart button.</p>';
 	}

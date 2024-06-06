@@ -30,7 +30,7 @@ define( 'VS_INJECTOR_VERSION', '0.1.0' );
  */
 define(
 	'VS_INJECTOR_THEMES',
-	[
+	array(
 		'Default (Blue)' => null,
 		'Indigo'         => 'indigo',
 		'Purple'         => 'purple',
@@ -43,15 +43,15 @@ define(
 		'Cyan'           => 'cyan',
 		'Gray'           => 'gray',
 		'Black'          => 'black',
-	]
+	)
 );
-define( 'VS_INJECTOR_START_END', [ 'start', 'end' ] );
+define( 'VS_INJECTOR_START_END', array( 'start', 'end' ) );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-vs-injector-activator.php
  */
-function activate_vs_injector() {
+function vs_injector_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector-activator.php';
 	Vs_Injector_Activator::activate();
 }
@@ -60,13 +60,13 @@ function activate_vs_injector() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-vs-injector-deactivator.php
  */
-function deactivate_vs_injector() {
+function vs_injector_devs_injector_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector-deactivator.php';
 	Vs_Injector_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_vs_injector' );
-register_deactivation_hook( __FILE__, 'deactivate_vs_injector' );
+register_activation_hook( __FILE__, 'vs_injector_activate' );
+register_deactivation_hook( __FILE__, 'vs_injector_devs_injector_activate' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -83,12 +83,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector.php';
  *
  * @since    0.1.0
  */
-function run_vs_injector() {
+function vs_injector_run() {
 
 	$plugin = new Vs_Injector();
 	$plugin->run();
 }
-run_vs_injector();
+vs_injector_run();
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -98,16 +98,16 @@ run_vs_injector();
  * @param   array $block_categories                         Array of categories for block types.
  * @see https://developer.wordpress.org/reference/hooks/block_categories_all/
  */
-function vinoshipper_injector_block_categories_init( $block_categories ) {
-	$block_categories[] = [
+function vs_injector_block_categories_init( $block_categories ) {
+	$block_categories[] = array(
 		'slug'  => 'vinoshipper',
 		'title' => __( 'Vinoshipper Injector', 'vinoshipper-injector' ),
 		'icon'  => null,
-	];
+	);
 
 	return $block_categories;
 }
-add_filter( 'block_categories_all', 'vinoshipper_injector_block_categories_init' );
+add_filter( 'block_categories_all', 'vs_injector_block_categories_init' );
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -116,7 +116,7 @@ add_filter( 'block_categories_all', 'vinoshipper_injector_block_categories_init'
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function vinoshipper_injector_block_init() {
+function vs_injector_block_init() {
 	register_block_type( __DIR__ . '/build/core' );
 	register_block_type( __DIR__ . '/build/product-catalog' );
 	register_block_type( __DIR__ . '/build/product-item' );
@@ -124,4 +124,4 @@ function vinoshipper_injector_block_init() {
 	register_block_type( __DIR__ . '/build/add-to-cart' );
 	register_block_type( __DIR__ . '/build/club-registration' );
 }
-add_action( 'init', 'vinoshipper_injector_block_init' );
+add_action( 'init', 'vs_injector_block_init' );

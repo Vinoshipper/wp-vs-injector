@@ -1,3 +1,9 @@
+/**
+ * Vinoshipper Injector for WordPress: Available In, Edit
+ *
+ * @package
+ */
+
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import './editor.scss';
