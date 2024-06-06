@@ -1,12 +1,13 @@
 <?php
 /**
- * Plugin Name:       Vinoshipper Injector
- * Plugin URI:        https://www.vinoshipper.com
+ * Plugin Name:       Vinoshipper
+ * Plugin URI:        https://developer.vinoshipper.com/docs/wordpress-plugin
  * Description:       Add the ability to incorporate Vinoshipper's Injector with inside WordPress.
- * Requires at least: 6.1
- * Requires PHP:      7.0
+ * Requires at least: 6.5
+ * Requires PHP:      7.4
  * Version:           0.1.0
  * Author:            Vinoshipper
+ * Author URI:        https://www.vinoshipper.com
  * License:           GPL-3.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       vinoshipper-injector
