@@ -1,16 +1,20 @@
 === Product Catalog ===
-Contributors:      Vinoshipper
+Contributors:      vinoshipper, theseg
 Tags:              block
+Requires at least: 6.5
 Tested up to:      6.5
 Stable tag:        0.1.0
+Requires PHP:      7.4
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
-Display a list of products.
+Allows for Vinoshipper Injector components in WordPress.
 
 == Description ==
 
-Vinoshipper Injector for WordPress is a WordPress plugin providing access to the [Vinoshipper Injector](https://developer.vinoshipper.com/docs/injector-getting-started). Once installed and configured, you can use any Vinoshipper Injector component as a content block.
+Vinoshipper Injector for WordPress is a plugin providing access to the [Vinoshipper Injector](https://developer.vinoshipper.com/docs/injector-getting-started). Once installed and configured, you can use any Vinoshipper Injector component as a Gutenberg content block.
+
+Use of this plugin requires a Producer account with [Vinoshipper](https://vinoshipper.com).
 
 == Installation ==
 

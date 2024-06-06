@@ -3,7 +3,7 @@ import {
 	PanelBody,
 	ToggleControl,
 	SelectControl,
-	__experimentalNumberControl as NumberControl,
+	TextControl,
 } from '@wordpress/components';
 import './editor.scss';
 
@@ -26,8 +26,9 @@ export default function Edit( { attributes, setAttributes } ) {
 			<InspectorControls>
 				<PanelBody title="Product Catalog Details">
 					<fieldset>
-						<NumberControl
+						<TextControl
 							label="List ID"
+							type="number"
 							help="Display a specific custom Product Catalog. Leave blank for default Product Catalog."
 							value={ list }
 							onChange={ ( newValue ) => {
@@ -40,7 +41,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								}
 							} }
 							placeholder="Default Product Catalog"
-							min={ 0 }
+							min={ 1 }
 							step={ 1 }
 						/>
 						<p>
