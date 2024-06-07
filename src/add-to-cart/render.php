@@ -21,5 +21,13 @@ if ( isset( $attributes['productUnits'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-product-units'] = $attributes['productUnits'];
 }
 
+$vs_injector_normalized_attributes = array();
+foreach ( $vs_injector_wrapper_pre_attributes as $vs_injector_key => $vs_injector_value ) {
+	$vs_injector_normalized_attributes[] = $vs_injector_key . '="' . esc_attr( $vs_injector_value ) . '"';
+}
+$vs_injector_final_output = implode( ' ', $vs_injector_normalized_attributes );
+
 ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes( $vs_injector_wrapper_pre_attributes ) ); ?>></div>
+<div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
+	<div <?php echo wp_kses_data( $vs_injector_final_output ); ?>></div>
+</div>

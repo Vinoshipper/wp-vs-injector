@@ -13,11 +13,14 @@
 	],
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true
 	},
 	"textdomain": "vinoshipper-injector",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
+	"viewScript": "file:./view.js",
+	"viewStyle": "file:./view.css",
 	"render": "file:./render.php",
 	"attributes": {
 		"productId": {
