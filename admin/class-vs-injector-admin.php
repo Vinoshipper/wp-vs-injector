@@ -77,52 +77,12 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', array(), $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugins_url( 'build/core/index.js', __FILE__ ), array(), $this->version, false );
-	}
-
-	/**
-	 * Add the Vinoshipper Injector code and initialize functions.
-	 * This forces settings that are better for admin based views.
-	 */
-	public function add_header_code() {
-		$temp_account_id = get_option( 'vs_injector_account_id' );
-
-		if ( is_numeric( $temp_account_id ) ) {
-			$temp_theme      = get_option( 'vs_injector_theme' );
-			$temp_theme_dark = boolval( get_option( 'vs_injector_theme_dark' ) );
-			$computed_theme  = null;
-
-			if ( $temp_theme && $temp_theme_dark ) {
-				$computed_theme = $temp_theme . '-dark';
-			} elseif ( $temp_theme ) {
-				$computed_theme = $temp_theme;
-			} elseif ( $temp_theme_dark ) {
-				$computed_theme = 'dark';
-			}
-
-			$settings = array(
-				'theme'        => $computed_theme,
-				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
-				'cartButton'   => false,
-			);
-			echo '<script type="text/javascript">
-			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
-			window.document.addEventListener(\'vinoshipper:loaded\', () => {
-				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
-			});
-			if (window.Vinoshipper) {
-				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
-			}
-			</script>
-			';
-		} else {
-			echo '<script type="text/javascript">console.error("Vinoshipper Injector: Account ID not defined.");</script>';
-		}
 	}
 
 	/**
 	 * Register REST endpoints for Admin Block UI.
+	 *
+	 * @since    0.1.0
 	 */
 	public function rest_proxy_register() {
 		register_rest_route(
@@ -147,6 +107,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * REST permission callback
+	 *
+	 * @since    0.1.0
 	 */
 	public function rest_proxy_permissions_check() {
 		// Restrict endpoint to only users who have the edit_posts capability.
@@ -159,6 +121,7 @@ class Vs_Injector_Admin {
 	/**
 	 * REST endpoint for Products list.
 	 *
+	 * @since    0.1.0
 	 * @param    any $data Data from products request.
 	 */
 	public function rest_proxy_products( $data ) {
@@ -192,6 +155,7 @@ class Vs_Injector_Admin {
 	/**
 	 * REST endpoint for Clubs list.
 	 *
+	 * @since    0.1.0
 	 * @param    any $data Data from products request.
 	 */
 	public function rest_proxy_clubs( $data ) {
@@ -224,6 +188,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Register Options Page
+	 *
+	 * @since    0.1.0
 	 */
 	public function options_page() {
 		add_menu_page(
@@ -238,6 +204,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Include Admin Display HTML
+	 *
+	 * @since    0.1.0
 	 */
 	public function vs_injector_settings_page_html() {
 		include plugin_dir_path( __DIR__ ) . 'admin/partials/vs-injector-admin-display.php';
@@ -245,6 +213,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Include all Setting sections and fields.
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_init() {
 
@@ -317,6 +287,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * General Settings
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_section_general_callback() {
 		echo '<p>General Settings for Vinoshipper Injector.</p>';
@@ -324,6 +296,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Account ID Setting UI
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_account_id_input() {
 		echo '<input id="vs_injector_account_id" name="vs_injector_account_id" type="number" value="' . esc_attr( get_option( 'vs_injector_account_id' ) ) . '" required data-1p-ignore />';
@@ -333,6 +307,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Theme Setting UI
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_theme_input() {
 		$selected_option = get_option( 'vs_injector_theme' );
@@ -350,6 +326,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Dark Theme Setting UI
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_theme_dark_input() {
 		$selected_option = get_option( 'vs_injector_theme_dark' );
@@ -359,6 +337,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Cart Options Information
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_section_cart_callback() {
 		echo '<p>Options for displaying the Cart.</p>';
@@ -366,6 +346,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Cart Position Setting UI
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_cart_position_input() {
 		$selected_option = get_option( 'vs_injector_cart_position' );
@@ -382,6 +364,8 @@ class Vs_Injector_Admin {
 
 	/**
 	 * Cart Button Display Setting UI
+	 *
+	 * @since    0.1.0
 	 */
 	public function settings_cart_button_input() {
 		$selected_option = get_option( 'vs_injector_cart_button' );
