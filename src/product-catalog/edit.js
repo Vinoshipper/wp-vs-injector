@@ -6,6 +6,7 @@ import {
 	TextControl,
 } from '@wordpress/components';
 import './editor.scss';
+import vsIcon from '../core/vinoshipper.svg'
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -138,7 +139,10 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div className="vs-injector-block-editor-content">
 				{ available && (
 					<div className="vs-injector-block-available-in">
-						<h2>Available In</h2>
+						<div className='vs-injector-block-header'>
+							<img src={ vsIcon } className='vs-icon' alt='Vinoshipper' />
+							<h2>Available In</h2>
+						</div>
 						{ ! tooltip && (
 							<ul>
 								<li>Will hide Tooltips</li>
@@ -148,7 +152,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					</div>
 				) }
 				<div className="vs-injector-block-product-catalog">
-					<h2>Product List</h2>
+					<div className='vs-injector-block-header'>
+						<img src={ vsIcon } className='vs-icon' alt='Vinoshipper' />
+						<h2>Product List</h2>
+					</div>
 					<ul>
 						{ list && (
 							<li>Product Catalog #{ parseInt( list ) }</li>

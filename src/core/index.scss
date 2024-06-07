@@ -42,4 +42,22 @@
 			color: #fff;
 		}
 	}
+	.vs-injector-block-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			line-height: 1;
+		}
+	}
+
+	.vs-icon {
+		height: 2rem;
+	}
 }

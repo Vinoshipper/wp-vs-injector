@@ -2,6 +2,7 @@ import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import { PanelBody, ToggleControl, SelectControl } from '@wordpress/components';
 import './editor.scss';
+import vsIcon from '../core/vinoshipper.svg'
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -164,7 +165,10 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
 				<div className="vs-injector-block-product-item">
-					<h2>Product Item</h2>
+					<div className='vs-injector-block-header'>
+						<img src={ vsIcon } className='vs-icon' alt='Vinoshipper' />
+						<h2>Product Item</h2>
+					</div>
 					{ targetAccountId && (
 						<div>
 							<h3>
@@ -201,9 +205,6 @@ export default function Edit( { attributes, setAttributes } ) {
 									<li>Always show full description.</li>
 								) }
 							</ul>
-							<p>
-								View page to see the fully rendered component.
-							</p>
 						</div>
 					) }
 					{ ! targetAccountId && (

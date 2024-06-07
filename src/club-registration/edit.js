@@ -10,6 +10,7 @@ import {
 	CheckboxControl,
 } from '@wordpress/components';
 import './editor.scss';
+import vsIcon from '../core/vinoshipper.svg'
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -201,7 +202,10 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
 				<div className="vs-injector-block-club-registration">
-					<h2>Club Registration</h2>
+					<div className='vs-injector-block-header'>
+						<img src={ vsIcon } className='vs-icon' alt='Vinoshipper' />
+						<h2>Club Registration</h2>
+					</div>
 					{ targetAccountId && (
 						<div>
 							<ul>

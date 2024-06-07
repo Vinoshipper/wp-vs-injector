@@ -7,6 +7,7 @@ import {
 	TextControl,
 } from '@wordpress/components';
 import './editor.scss';
+import vsIcon from '../core/vinoshipper.svg'
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -143,8 +144,11 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
-				<div className="vs-injector-block-product-item">
-					<h2>Add To Cart</h2>
+				<div className="vs-injector-block-add-to-cart">
+					<div className='vs-injector-block-header'>
+						<img src={ vsIcon } className='vs-icon' alt='Vinoshipper' />
+						<h2>Add To Cart</h2>
+					</div>
 					{ targetAccountId && (
 						<div>
 							<h3>
@@ -177,9 +181,6 @@ export default function Edit( { attributes, setAttributes } ) {
 									<li>Units: { productUnits }</li>
 								) }
 							</ul>
-							<p>
-								View page to see the fully rendered component.
-							</p>
 						</div>
 					) }
 					{ ! targetAccountId && (
