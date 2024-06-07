@@ -1,22 +1,14 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
+@import "../core/style-includes";
 
 .wp-block-vinoshipper-injector-product-catalog {
 
 	.vs-injector-block-available-in {
-		border: 2px solid #808080;
-		margin: 0 0 12px 0;
-		padding: 1rem;
-		border-radius: 0.3rem;
+
+		@include vs-injector-base-block();
 	}
 
 	.vs-injector-block-product-catalog {
-		border: 2px solid #808080;
-		margin: 0 0 12px 0;
-		padding: 1rem;
-		border-radius: 0.3rem;
+
+		@include vs-injector-base-block();
 	}
 }
