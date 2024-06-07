@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Product Add To Cart",
 	"category": "vinoshipper",
-	"icon": "admin-page",
+	"icon": "cart",
 	"description": "Display one product's Add To Cart button and optional quantity.",
 	"keywords": [
 		"vs",
