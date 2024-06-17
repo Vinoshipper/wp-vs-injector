@@ -10,8 +10,8 @@
 	],
 	"homepage": "https://developer.vinoshipper.com/docs/wordpress-plugin",
 	"repository": {
-	  "type": "git",
-	  "url": "https://github.com/Vinoshipper/wp-vs-injector.git"
+		"type": "git",
+		"url": "https://github.com/Vinoshipper/wp-vs-injector.git"
 	},
 	"bugs": {
 		"url": "https://github.com/Vinoshipper/wp-vs-injector/issues"

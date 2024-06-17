@@ -22,12 +22,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Currently plugin version.
  * Rename this for your plugin and update it as you release new versions.
+ *
+ * @since 0.1.0
  */
 define( 'VS_INJECTOR_VERSION', '0.1.0' );
 
 /**
- * Available VS Themes
+ * VS Themes
  * List of Available themes for Vinoshipper Injector.
+ *
+ * @since 0.1.0
  */
 define(
 	'VS_INJECTOR_THEMES',
@@ -46,11 +50,18 @@ define(
 		'Black'          => 'black',
 	)
 );
+
+/**
+ * Cart Display Location Options
+ *
+ * @since 0.1.0
+ */
 define( 'VS_INJECTOR_START_END', array( 'start', 'end' ) );
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-vs-injector-activator.php
+ * Plugin activation.
+ *
+ * @since 0.1.0
  */
 function vs_injector_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector-activator.php';
@@ -58,8 +69,9 @@ function vs_injector_activate() {
 }
 
 /**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-vs-injector-deactivator.php
+ * Plugin deactivation.
+ *
+ * @since 0.1.0
  */
 function vs_injector_devs_injector_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector-deactivator.php';
@@ -72,6 +84,8 @@ register_deactivation_hook( __FILE__, 'vs_injector_devs_injector_activate' );
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
+ *
+ * @since 0.1.0
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-vs-injector.php';
 
@@ -97,6 +111,7 @@ vs_injector_run();
  * through the block editor in the corresponding context.
  *
  * @param   array $block_categories                         Array of categories for block types.
+ * @since 0.1.0
  * @see https://developer.wordpress.org/reference/hooks/block_categories_all/
  */
 function vs_injector_block_categories_init( $block_categories ) {
@@ -116,6 +131,7 @@ add_filter( 'block_categories_all', 'vs_injector_block_categories_init' );
  * through the block editor in the corresponding context.
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
+ * @since 0.1.0
  */
 function vs_injector_block_init() {
 	register_block_type( __DIR__ . '/build/core' );

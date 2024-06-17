@@ -89,7 +89,7 @@ class Vs_Injector_Public {
 			}
 
 			$settings = array(
-				'vsPlugin'     => 'vs-wordpress:' . esc_html(VS_INJECTOR_VERSION),
+				'vsPlugin'     => 'vs-wordpress:' . esc_html( VS_INJECTOR_VERSION ),
 				'theme'        => $computed_theme,
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
 				'cartButton'   => boolval( get_option( 'vs_injector_cart_button', true ) ),

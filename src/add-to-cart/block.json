@@ -7,10 +7,7 @@
 	"category": "vinoshipper",
 	"icon": "cart",
 	"description": "Display one product's Add To Cart button and optional quantity.",
-	"keywords": [
-		"vs",
-		"cart button"
-	],
+	"keywords": [ "vs", "cart button" ],
 	"example": {},
 	"supports": {
 		"html": false,

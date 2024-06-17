@@ -7,9 +7,7 @@
 	"category": "vinoshipper",
 	"icon": "admin-site-alt3",
 	"description": "Display the delivery methods and states your products can be sold to.",
-	"keywords": [
-		"vs"
-	],
+	"keywords": [ "vs" ],
 	"example": {},
 	"supports": {
 		"html": false

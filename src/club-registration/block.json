@@ -7,11 +7,7 @@
 	"category": "vinoshipper",
 	"icon": "welcome-write-blog",
 	"description": "Display Club Registration form.",
-	"keywords": [
-		"vs",
-		"clubs",
-		"club form"
-	],
+	"keywords": [ "vs", "clubs", "club form" ],
 	"example": {},
 	"supports": {
 		"html": false
