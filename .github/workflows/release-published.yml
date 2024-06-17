@@ -23,11 +23,6 @@ jobs:
       - name: Install Node Modules
         run: npm install
 
-      - name: Install PHP dependencies
-        uses: ramsey/composer-install@v3
-        with:
-          composer-options: "--no-progress"
-
       - name: Build Blocks
         run: npm run build
 
