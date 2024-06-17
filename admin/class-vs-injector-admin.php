@@ -221,7 +221,7 @@ class Vs_Injector_Admin {
 		// Section: General.
 		add_settings_section(
 			'vs_injector_settings_section',
-			'General Settings',
+			'Account Settings',
 			array( $this, 'settings_section_general_callback' ),
 			'vs_injector_settings_section_general'
 		);
@@ -235,11 +235,18 @@ class Vs_Injector_Admin {
 				'label_for' => 'vs_injector_account_id',
 			)
 		);
+		// Section: General.
+		add_settings_section(
+			'vs_injector_settings_section',
+			'Theme Settings',
+			array( $this, 'settings_section_theme_callback' ),
+			'vs_injector_settings_section_theme'
+		);
 		add_settings_field(
 			'vs_injector_theme_field',
 			'Theme',
 			array( $this, 'settings_theme_input' ),
-			'vs_injector_settings_section_general',
+			'vs_injector_settings_section_theme',
 			'vs_injector_settings_section',
 			array(
 				'label_for' => 'vs_injector_theme',
@@ -249,7 +256,7 @@ class Vs_Injector_Admin {
 			'vs_injector_theme_dark_field',
 			'Theme: Enable Dark Mode',
 			array( $this, 'settings_theme_dark_input' ),
-			'vs_injector_settings_section_general',
+			'vs_injector_settings_section_theme',
 			'vs_injector_settings_section',
 			array(
 				'label_for' => 'vs_injector_theme_dark',
@@ -291,7 +298,7 @@ class Vs_Injector_Admin {
 	 * @since    0.1.0
 	 */
 	public function settings_section_general_callback() {
-		echo '<p>General Settings for Vinoshipper Injector.</p>';
+		echo '<p>Required Account Settings for Vinoshipper Injector.</p>';
 	}
 
 	/**
@@ -303,6 +310,15 @@ class Vs_Injector_Admin {
 		echo '<input id="vs_injector_account_id" name="vs_injector_account_id" type="number" value="' . esc_attr( get_option( 'vs_injector_account_id' ) ) . '" required data-1p-ignore />';
 		echo '<p><strong>Account ID is required.</strong></p>';
 		echo '<p>Available on the Vinoshipper platform, located at <a href="https://vinoshipper.com/ui/producer/account" target="_blank">Account -> Profile</a>.</p>';
+	}
+
+	/**
+	 * Theme Settings
+	 *
+	 * @since   0.1.0
+	 */
+	public function settings_section_theme_callback() {
+		echo '<p>Apparance settings for all Vinoshiper Components.</p>';
 	}
 
 	/**

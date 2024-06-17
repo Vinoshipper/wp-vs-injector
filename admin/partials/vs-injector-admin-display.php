@@ -24,6 +24,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	<?php
 	settings_fields( 'vs_injector_settings' );
 	do_settings_sections( 'vs_injector_settings_section_general' );
+	do_settings_sections( 'vs_injector_settings_section_theme' );
 	do_settings_sections( 'vs_injector_settings_section_cart' );
 	submit_button( ( esc_html__( 'Save Settings', 'vinoshipper-injector' ) ) );
 	?>
