@@ -7,12 +7,7 @@
 	"category": "vinoshipper",
 	"icon": "list-view",
 	"description": "Display a list of products.",
-	"keywords": [
-		"vs",
-		"products",
-		"list",
-		"cards"
-	],
+	"keywords": [ "vs", "products", "list", "cards" ],
 	"example": {},
 	"supports": {
 		"html": false
@@ -23,8 +18,9 @@
 	"render": "file:./render.php",
 	"attributes": {
 		"cards": {
-			"type": "boolean",
-			"default": false
+			"type": "string",
+			"default": "list",
+			"enum": [ "cards", "list" ]
 		},
 		"list": {
 			"type": "number",

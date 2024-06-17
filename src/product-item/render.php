@@ -15,7 +15,7 @@ if ( isset( $attributes['accountId'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-account-id'] = $attributes['accountId'];
 }
 if ( isset( $attributes['cards'] ) ) {
-	$vs_injector_wrapper_pre_attributes['data-vs-cards'] = boolval( $attributes['cards'] ) ? 'true' : 'false';
+	$vs_injector_wrapper_pre_attributes['data-vs-cards'] = ( 'cards' === $attributes['cards'] ) ? 'true' : 'false';
 }
 if ( isset( $attributes['image'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-product-image'] = boolval( $attributes['image'] ) ? 'true' : 'false';

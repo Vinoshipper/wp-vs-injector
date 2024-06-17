@@ -64,8 +64,8 @@ export default function Edit( { attributes, setAttributes } ) {
 						<SelectControl
 							label="Catalog Layout"
 							options={ [
-								{ label: 'List', value: false },
-								{ label: 'Cards', value: true },
+								{ label: 'List', value: 'list' },
+								{ label: 'Cards', value: 'cards' },
 							] }
 							value={ cards }
 							help={
@@ -168,8 +168,12 @@ export default function Edit( { attributes, setAttributes } ) {
 						{ list && (
 							<li>Product Catalog #{ parseInt( list ) }</li>
 						) }
-						{ cards && <li>Display in the Cards Layout.</li> }
-						{ ! cards && <li>Display in the List Layout.</li> }
+						{ cards === 'cards' && (
+							<li>Display in the Cards Layout.</li>
+						) }
+						{ cards === 'list' && (
+							<li>Display in the List Layout.</li>
+						) }
 					</ul>
 					<p>View page to see the fully rendered component.</p>
 				</div>

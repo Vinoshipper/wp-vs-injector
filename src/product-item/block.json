@@ -7,9 +7,7 @@
 	"category": "vinoshipper",
 	"icon": "admin-page",
 	"description": "Display one product with image, description, and other information.",
-	"keywords": [
-		"vs"
-	],
+	"keywords": [ "vs" ],
 	"example": {},
 	"supports": {
 		"html": false
@@ -28,8 +26,9 @@
 			"default": null
 		},
 		"cards": {
-			"type": "boolean",
-			"default": false
+			"type": "string",
+			"default": "list",
+			"enum": [ "cards", "list" ]
 		},
 		"image": {
 			"type": "boolean",
