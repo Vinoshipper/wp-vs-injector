@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1024px" height="1024px" viewBox="0 0 1024 1024" style="enable-background:new 0 0 1024 1024;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#8031A7;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:url(#vs-logo-style-id-01);}
+</style>
+<g>
+	<circle class="st0" cx="512" cy="512" r="512"/>
+	<g>
+		<path class="st1" d="M511.994,651.416l-106.828-405.41c-4.635-17.588-20.539-29.846-38.728-29.846H323.15
+			c-26.372,0-45.545,25.047-38.662,50.504l139.139,514.585c7.926,29.311,34.517,49.668,64.881,49.668h46.985
+			c21.498,0,41.071-10.238,53.5-26.602C552.843,802.986,533.782,734.912,511.994,651.416z"/>
+
+			<linearGradient id="vs-logo-style-id-01" gradientUnits="userSpaceOnUse" x1="411.757" y1="-1179.6063" x2="677.6554" y2="-956.491" gradientTransform="matrix(1 0 0 -1 0 -498)">
+			<stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.35"/>
+			<stop  offset="0.0296" style="stop-color:#FFFFFF;stop-opacity:0.3716"/>
+			<stop  offset="0.89" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<path class="st2" d="M700.85,216.16H657.56c-18.188,0-34.093,12.255-38.728,29.843l-106.84,405.412
+			c21.789,83.497,40.849,151.57,76.999,152.9c5.151-6.853,9.124-14.717,11.381-23.067c1.626-6.015,139.139-514.585,139.139-514.585
+			C746.396,241.207,727.222,216.16,700.85,216.16z"/>
+	</g>
+</g>
+</svg>

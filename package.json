@@ -1,6 +1,6 @@
 {
-	"name": "vinoshipper-injector",
-	"version": "0.1.0",
+	"name": "@vinoshipper/wp-vs-injector",
+	"version": "1.0.0",
 	"description": "A WordPress plugin providing access to the Vinoshipper Injector.",
 	"author": "Vinoshipper (https://www.vinoshipper.com)",
 	"license": "GPL-3.0-or-later",
