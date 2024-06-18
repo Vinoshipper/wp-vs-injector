@@ -1,4 +1,4 @@
-=== Product Catalog ===
+=== Vinoshipper ===
 Contributors:      vinoshipper, theseg
 Tags:              block
 Requires at least: 6.5
