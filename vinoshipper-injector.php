@@ -10,7 +10,7 @@
  * Author URI:        https://www.vinoshipper.com
  * License:           GPL-3.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       vinoshipper-injector
+ * Text Domain:       vinoshipper
  *
  * @package VinoshipperInjector
  */
@@ -117,7 +117,7 @@ vs_injector_run();
 function vs_injector_block_categories_init( $block_categories ) {
 	$block_categories[] = array(
 		'slug'  => 'vinoshipper',
-		'title' => __( 'Vinoshipper Injector', 'vinoshipper-injector' ),
+		'title' => __( 'Vinoshipper Injector', 'vinoshipper' ),
 		'icon'  => null,
 	);
 
