@@ -67,12 +67,7 @@ class Vs_Injector_Public {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script( $this->plugin_name, 'https://vinoshipper.com/injector/index.js', array(), $this->version, false );
-	}
 
-	/**
-	 * Add the Vinoshipper Injector code and initialize functions.
-	 */
-	public function add_header_code() {
 		$temp_account_id = get_option( 'vs_injector_account_id' );
 
 		if ( is_numeric( $temp_account_id ) ) {
@@ -94,19 +89,19 @@ class Vs_Injector_Public {
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
 				'cartButton'   => boolval( get_option( 'vs_injector_cart_button', true ) ),
 			);
-			echo '<script type="text/javascript">
-			window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
+			$script_content = 'window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
 			window.document.addEventListener(\'vinoshipper:loaded\', () => {
 				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			});
 			if (window.Vinoshipper) {
 				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
-			}
-			</script>
-			';
+			}';
+			wp_add_inline_script($this->plugin_name, $script_content, 'before');
 		} else {
-			echo '<script type="text/javascript">console.error("Vinoshipper Injector: Account ID not defined.");</script>';
+			$script_content = 'console.error("Vinoshipper Injector: Account ID not defined.");';
+			wp_add_inline_script($this->plugin_name, $script_content, 'before');
 		}
+
 	}
 
 	/**
