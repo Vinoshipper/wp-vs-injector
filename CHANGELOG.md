@@ -2,7 +2,7 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
-## 1.0.1 - 2024-XX-XX
+## 1.0.1 - 2024-07-25
 
 * Minor improvements.
 * Tested under WordPress 6.6
