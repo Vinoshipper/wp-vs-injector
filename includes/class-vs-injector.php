@@ -169,7 +169,6 @@ class Vs_Injector {
 		$plugin_public = new Vs_Injector_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_public, 'settings_init' );
-		$this->loader->add_action( 'wp_head', $plugin_public, 'add_header_code' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 	}

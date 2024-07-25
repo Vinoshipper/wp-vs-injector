@@ -2,11 +2,11 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/core",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"title": "Core",
 	"category": "vinoshipper",
 	"description": "Core resources for Vinoshipper Injector.",
-	"textdomain": "vinoshipper-injector",
+	"textdomain": "vinoshipper",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css"
 }

@@ -9,6 +9,10 @@
  * @subpackage VinoshipperInjector/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -113,7 +117,7 @@ class Vs_Injector_Admin {
 	public function rest_proxy_permissions_check() {
 		// Restrict endpoint to only users who have the edit_posts capability.
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			return new WP_Error( 'rest_forbidden', esc_html__( 'Access deined.', 'vinoshipper-injector' ), array( 'status' => 401 ) );
+			return new WP_Error( 'rest_forbidden', esc_html__( 'Access deined.', 'vinoshipper' ), array( 'status' => 401 ) );
 		}
 		return true;
 	}

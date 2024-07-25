@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/product-item",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"title": "Product Item",
 	"category": "vinoshipper",
 	"icon": "admin-page",
@@ -12,7 +12,7 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "vinoshipper-injector",
+	"textdomain": "vinoshipper",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"render": "file:./render.php",
