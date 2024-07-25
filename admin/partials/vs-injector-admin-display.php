@@ -11,10 +11,12 @@
  * @subpackage VinoshipperInjector/admin/partials
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 if ( ! current_user_can( 'manage_options' ) ) {
-	wp_die( esc_html__( 'Sorry, you are not allowed to manage options for this site.', 'vinoshipper-injector' ) );
+	wp_die( esc_html__( 'Sorry, you are not allowed to manage options for this site.', 'vinoshipper' ) );
 }
 
 ?>
@@ -28,7 +30,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	do_settings_sections( 'vs_injector_settings_section_general' );
 	do_settings_sections( 'vs_injector_settings_section_theme' );
 	do_settings_sections( 'vs_injector_settings_section_cart' );
-	submit_button( ( esc_html__( 'Save Settings', 'vinoshipper-injector' ) ) );
+	submit_button( ( esc_html__( 'Save Settings', 'vinoshipper' ) ) );
 	?>
 	</form>
 </div>

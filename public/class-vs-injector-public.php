@@ -83,7 +83,7 @@ class Vs_Injector_Public {
 				$computed_theme = 'dark';
 			}
 
-			$settings = array(
+			$settings       = array(
 				'vsPlugin'     => 'vs-wordpress:' . esc_html( VS_INJECTOR_VERSION ),
 				'theme'        => $computed_theme,
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
@@ -96,12 +96,11 @@ class Vs_Injector_Public {
 			if (window.Vinoshipper) {
 				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
 			}';
-			wp_add_inline_script($this->plugin_name, $script_content, 'before');
+			wp_add_inline_script( $this->plugin_name, $script_content, 'before' );
 		} else {
 			$script_content = 'console.error("Vinoshipper Injector: Account ID not defined.");';
-			wp_add_inline_script($this->plugin_name, $script_content, 'before');
+			wp_add_inline_script( $this->plugin_name, $script_content, 'before' );
 		}
-
 	}
 
 	/**
