@@ -11,6 +11,8 @@
  * @subpackage VinoshipperInjector/admin/partials
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if ( ! current_user_can( 'manage_options' ) ) {
 	wp_die( esc_html__( 'Sorry, you are not allowed to manage options for this site.', 'vinoshipper-injector' ) );
 }

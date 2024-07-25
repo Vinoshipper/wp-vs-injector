@@ -9,6 +9,8 @@
  * @subpackage VinoshipperInjector/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 /**
  * The admin-specific functionality of the plugin.
  *
