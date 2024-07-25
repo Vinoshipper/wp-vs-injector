@@ -27,7 +27,7 @@ The plugin includes the following components:
 * **Club Registration** - Allow customers to sign up for your clubs.
 
 ### Important Information ###
-Use of this plugin requires a Producer account with [Vinoshipper](https://vinoshipper.com). For the components to work, you must serve your site with SSL (https://). For more information, see [Vinoshipper Injector - WordPress Plugin](https://developer.vinoshipper.com/docs/wordpress-plugin).
+Use of this plugin connects to [Vinoshipper](https://vinoshipper.com) and requires a Vinoshipper Producer account in good standing. This allows the plugin to obtain product and store information to display to your users. This also allows users to add items to a shopping cart and initiate checkout. Please see our [Terms & Conditions](https://vinoshipper.freshdesk.com/support/solutions/articles/9000217866-terms-conditions) and [Privacy Policy](https://vinoshipper.freshdesk.com/support/solutions/articles/9000217864-privacy-policy) for more information.
 
 == Installation ==
 
@@ -53,6 +53,9 @@ If you wish to further customize the display of Vinoshipper components, we offer
 4. Focus on one particular product with product information and buy buttons.
 5. Display the states you are able to ship to and other delivery options you've activated with Vinoshipper.
 6. Include Add To Cart buttons to create your own custom product page while leveraging Vinoshipper's Cart.
+
+== Development ==
+Please report bugs in the [Vinoshipper Injector WordPress repository on GitHub](https://github.com/Vinoshipper/wp-vs-injector). Note that GitHub is not a support forum but an efficient platform for addressing and resolving issues efficiently. If you have issues with your Vinoshipper account, please contact [Vinoshipper Support](https://vinoshipper.freshdesk.com/)
 
 == Changelog ==
 
