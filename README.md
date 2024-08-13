@@ -2,8 +2,6 @@
 
 Vinoshipper Injector for WordPress is a WordPress plugin providing access to the [Vinoshipper Injector](https://developer.vinoshipper.com/docs/injector-getting-started). Once installed and configured, you can use any Vinoshipper Injector component as a content block.
 
-***Plugin is currently in development and not ready for production.***
-
 ## Install
 
 * Requires PHP 8.1+
