@@ -12,12 +12,19 @@ Incorporate Vinoshipper components in WordPress.
 
 == Description ==
 
-Add Vinoshipper store components to your website with easy to manage content blocks.
+**Vinoshipper product catalog & club sign up integration**
 
-Once installed and setup, you can use Gutenberg content blocks to present your products from Vinoshipper.
+The plug & play integration plug-in allows Vinoshipper producers to seamlessly integrate their product catalog and club sign-up forms directly into their WordPress websites—no coding required. Whether you’re a small boutique winery or a large producer, this plugin enables you to easily showcase your offerings and grow your club membership with minimal effort.
+
+### Key Features ###
+* Effortless integration: Simply install the plugin, set your Vinoshipper Account ID in the settings, and you’re ready to go.
+* Block system: Use WordPress’ drag-and-drop blocks to add your product catalog and club sign-up forms exactly where you want them on your site.
+* Customizable layouts: Tailor the appearance of your product listings and forms to match your brand’s aesthetic.
+* Real-time updates: Automatically sync your Vinoshipper account with your WordPress site, ensuring your product offerings and availability are always up-to-date.
+* Exclusively for Vinoshipper clients: This plugin is available exclusively to Vinoshipper customers, adding an extra layer of value to your partnership with us.
 
 ### Included Components ###
-The plugin includes the following components:
+The plugin includes the following components and Gutenberg blocks:
 
 * **Vinoshipper Cart** - Allows your customers add and buy products from your website on the Vinoshipper platform.
 * **Product Catalog** - Display a list of your available products. Choose your default list or create a custom list of your products.

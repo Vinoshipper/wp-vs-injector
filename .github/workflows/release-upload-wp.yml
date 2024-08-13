@@ -1,0 +1,36 @@
+name: Deploy to WordPress.org Repository
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+jobs:
+  deploy_to_wp_repo:
+    runs-on: ubuntu-latest
+    name: Deploy to WP.org
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/iron
+          cache: 'npm'
+
+      - name: Install Node Modules
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+
+      - name: WordPress Plugin Deploy
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
