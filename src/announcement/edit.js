@@ -5,7 +5,7 @@
  */
 
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { PanelBody } from '@wordpress/components';
 import './editor.scss';
 import vsIcon from '../core/vinoshipper.svg';
 
@@ -20,16 +20,14 @@ import vsIcon from '../core/vinoshipper.svg';
  *
  * @return {Element} Element to render.
  */
-export default function Edit( { attributes, setAttributes } ) {
-	const { tooltip } = attributes;
-
+export default function Edit( {} ) {
 	return (
 		<div { ...useBlockProps() }>
 			<InspectorControls>
 				<PanelBody title="Settings" initialOpen={ true }>
 					<fieldset>
 						<p>
-							Announcement will render only when the defined in { ' ' }
+							Announcement will render only when the defined in{ ' ' }
 							<a
 								href="https://vinoshipper.com/ui/producer/products/announcement"
 								target="_blank"
@@ -53,7 +51,11 @@ export default function Edit( { attributes, setAttributes } ) {
 						<h2>Announcement</h2>
 					</div>
 					<p>View page to see the fully rendered component.</p>
-					<p>Announcement will render <em>only</em> when defined in the Vinoshipper Producer Admin. See block settings for more details.</p>
+					<p>
+						Announcement will render <em>only</em> when defined in
+						the Vinoshipper Producer Admin. See block settings for
+						more details.
+					</p>
 				</div>
 			</div>
 		</div>

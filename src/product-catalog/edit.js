@@ -20,7 +20,8 @@ import vsIcon from '../core/vinoshipper.svg';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { cards, list, available, announcement, tooltip, descForce } = attributes;
+	const { cards, list, available, announcement, tooltip, descForce } =
+		attributes;
 
 	return (
 		<div { ...useBlockProps() }>
@@ -121,7 +122,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							} }
 						/>
 						<p>
-							When enabled, Announcement will render only when the defined in { ' ' }
+							When enabled, Announcement will render only when the
+							defined in{ ' ' }
 							<a
 								href="https://vinoshipper.com/ui/producer/products/announcement"
 								target="_blank"
@@ -181,7 +183,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 							<h2>Announcement</h2>
 						</div>
-						<p>Will render <em>only</em> when defined in the Vinoshipper Producer Admin. View page to see the fully rendered component.</p>
+						<p>
+							Will render <em>only</em> when defined in the
+							Vinoshipper Producer Admin. View page to see the
+							fully rendered component.
+						</p>
 					</div>
 				) }
 				{ available && (
