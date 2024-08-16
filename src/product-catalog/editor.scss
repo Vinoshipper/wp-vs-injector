@@ -2,6 +2,11 @@
 
 .wp-block-vinoshipper-injector-product-catalog {
 
+	.vs-injector-block-announcement {
+
+		@include vs-injector-base-block();
+	}
+
 	.vs-injector-block-available-in {
 
 		@include vs-injector-base-block();

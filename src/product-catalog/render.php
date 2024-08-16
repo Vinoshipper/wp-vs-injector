@@ -23,6 +23,9 @@ if ( isset( $attributes['list'] ) ) {
 if ( isset( $attributes['available'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-available'] = boolval( $attributes['available'] ) ? 'true' : 'false';
 }
+if ( isset( $attributes['announcement'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-announcement'] = boolval( $attributes['announcement'] ) ? 'true' : 'false';
+}
 if ( isset( $attributes['tooltip'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-tooltips'] = boolval( $attributes['tooltip'] ) ? 'true' : 'false';
 }
