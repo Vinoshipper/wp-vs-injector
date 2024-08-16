@@ -20,7 +20,8 @@ import vsIcon from '../core/vinoshipper.svg';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { cards, list, available, tooltip, descForce } = attributes;
+	const { cards, list, available, announcement, tooltip, descForce } =
+		attributes;
 
 	return (
 		<div { ...useBlockProps() }>
@@ -100,6 +101,41 @@ export default function Edit( { attributes, setAttributes } ) {
 					</fieldset>
 				</PanelBody>
 				<PanelBody
+					title="'Announcement' Component"
+					initialOpen={ false }
+				>
+					<fieldset>
+						<p>
+							If using the standalone Announcement component, turn
+							off &quot;Display Announcement&quot;.
+						</p>
+						<ToggleControl
+							label="Display Announcement"
+							help={
+								announcement
+									? 'Display the "Announcement" component.'
+									: 'Do not display the "Announcement" component.'
+							}
+							checked={ announcement }
+							onChange={ ( newValue ) => {
+								setAttributes( { announcement: newValue } );
+							} }
+						/>
+						<p>
+							When enabled, Announcement will render only when the
+							defined in{ ' ' }
+							<a
+								href="https://vinoshipper.com/ui/producer/products/announcement"
+								target="_blank"
+								rel="noreferrer"
+							>
+								Products -&gt; Announcement
+							</a>{ ' ' }
+							using your Vinoshipper Producer&apos;s Admin access.
+						</p>
+					</fieldset>
+				</PanelBody>
+				<PanelBody
 					title="'Available In' Component"
 					initialOpen={ false }
 				>
@@ -137,6 +173,23 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
+				{ announcement && (
+					<div className="vs-injector-block-announcement">
+						<div className="vs-injector-block-header">
+							<img
+								src={ vsIcon }
+								className="vs-icon"
+								alt="Vinoshipper"
+							/>
+							<h2>Announcement</h2>
+						</div>
+						<p>
+							Will render <em>only</em> when defined in the
+							Vinoshipper Producer Admin. View page to see the
+							fully rendered component.
+						</p>
+					</div>
+				) }
 				{ available && (
 					<div className="vs-injector-block-available-in">
 						<div className="vs-injector-block-header">

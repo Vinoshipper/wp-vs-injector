@@ -1,7 +1,7 @@
 === Vinoshipper ===
 Contributors:      vinoshipper, theseg
 Tags:              block
-Requires at least: 6.5
+Requires at least: 6.6
 Tested up to:      6.6
 Stable tag:        1.0.1
 Requires PHP:      7.4

@@ -30,6 +30,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"announcement": {
+			"type": "boolean",
+			"default": true
+		},
 		"tooltip": {
 			"type": "boolean",
 			"default": null

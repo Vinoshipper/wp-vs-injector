@@ -3,7 +3,7 @@
  * Plugin Name:       Vinoshipper
  * Plugin URI:        https://developer.vinoshipper.com/docs/wordpress-plugin
  * Description:       Incorporate Vinoshipper components in WordPress.
- * Requires at least: 6.5
+ * Requires at least: 6.6
  * Requires PHP:      7.4
  * Version:           1.0.1
  * Author:            Vinoshipper
@@ -136,6 +136,7 @@ function vs_injector_block_init() {
 	register_block_type( __DIR__ . '/build/core' );
 	register_block_type( __DIR__ . '/build/product-catalog' );
 	register_block_type( __DIR__ . '/build/product-item' );
+	register_block_type( __DIR__ . '/build/announcement' );
 	register_block_type( __DIR__ . '/build/available-in' );
 	register_block_type( __DIR__ . '/build/add-to-cart' );
 	register_block_type( __DIR__ . '/build/club-registration' );
