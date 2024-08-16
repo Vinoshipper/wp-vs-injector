@@ -3,7 +3,7 @@
  * Plugin Name:       Vinoshipper
  * Plugin URI:        https://developer.vinoshipper.com/docs/wordpress-plugin
  * Description:       Incorporate Vinoshipper components in WordPress.
- * Requires at least: 6.5
+ * Requires at least: 6.6
  * Requires PHP:      7.4
  * Version:           1.0.1
  * Author:            Vinoshipper

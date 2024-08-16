@@ -5,7 +5,7 @@ Vinoshipper Injector for WordPress is a WordPress plugin providing access to the
 ## Install
 
 * Requires PHP 8.1+
-* Requires WordPress 6.5+
+* Requires WordPress 6.6+
 * A Vinoshipper Account ID.
 
 The Vinoshipper Account ID is available to producers on the Vinoshipper platform, located at [Account -> Profile](https://vinoshipper.com/ui/producer/account) on the Vinoshipper Producer platform.
