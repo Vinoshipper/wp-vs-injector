@@ -1,33 +1,28 @@
 {
 	"preferredVersions": {
-	  "php": "8.3",
-	  "wp": "latest"
+		"php": "8.3",
+		"wp": "latest"
 	},
-	"phpExtensionBundles": [
-	  "kitchen-sink"
-	],
+	"phpExtensionBundles": ["kitchen-sink"],
 	"landingPage": "/wp-admin/admin.php?page=vs_injector_settings",
-	"features": {},
+	"features": {
+		"networking": true
+	},
 	"steps": [
-	  null,
-	  false,
-	  {
-		"step": "login",
-		"username": "admin",
-		"password": "password"
-	  },
-	  null,
-	  null,
-	  {
-		"step": "installPlugin",
-		"pluginZipFile": {
-		  "resource": "wordpress.org/plugins",
-		  "slug": "vinoshipper"
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
 		},
-		"progress": {
-		  "weight": 2
+		{
+			"step": "installPlugin",
+			"pluginZipFile": {
+				"resource": "wordpress.org/plugins",
+				"slug": "vinoshipper"
+			},
+			"progress": {
+				"weight": 2
+			}
 		}
-	  },
-	  null
 	]
-  }
+}
