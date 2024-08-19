@@ -1,25 +1,33 @@
 {
 	"preferredVersions": {
-	  "php": "8.0",
+	  "php": "8.3",
 	  "wp": "latest"
 	},
 	"phpExtensionBundles": [
 	  "kitchen-sink"
 	],
-	"features": {},
 	"landingPage": "/wp-admin/admin.php?page=vs_injector_settings",
+	"features": {},
 	"steps": [
+	  null,
+	  false,
+	  {
+		"step": "login",
+		"username": "admin",
+		"password": "password"
+	  },
+	  null,
+	  null,
 	  {
 		"step": "installPlugin",
 		"pluginZipFile": {
 		  "resource": "wordpress.org/plugins",
 		  "slug": "vinoshipper"
+		},
+		"progress": {
+		  "weight": 2
 		}
 	  },
-	  {
-		"step": "login",
-		"username": "admin",
-		"password": "password"
-	  }
+	  null
 	]
   }
