@@ -18,9 +18,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  run:
+  wp_node_linting:
+    runs-on: ubuntu-latest
+    name: WordPress Node Linting
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/iron
+          cache: 'npm'
+
+      - name: Install Node Modules
+        run: npm install
+
+      - name: Run Style Lint
+        run: npm run lint:css
+
+      - name: Run JavaScript Lint
+        run: npm run lint:js
+
+  phpcs:
     runs-on: ubuntu-latest
     name: PHPCS
+    needs: wp_node_linting
 
     steps:
       - name: Checkout
@@ -40,3 +64,15 @@ jobs:
 
       - name: Run PHPCS
         run: composer run-script check-cs
+
+  wp_plugin_check:
+    runs-on: ubuntu-latest
+    name: WoredPress Plugin Check
+    needs: wp_node_linting
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run WP Plugin Check
+        uses: wordpress/plugin-check-action@v1
