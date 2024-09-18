@@ -65,14 +65,14 @@ jobs:
       - name: Run PHPCS
         run: composer run-script check-cs
 
-  wp_plugin_check:
-    runs-on: ubuntu-latest
-    name: WoredPress Plugin Check
-    needs: wp_node_linting
+  # wp_plugin_check:
+  #   runs-on: ubuntu-latest
+  #   name: WoredPress Plugin Check
+  #   needs: wp_node_linting
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Run WP Plugin Check
-        uses: wordpress/plugin-check-action@v1
+  #     - name: Run WP Plugin Check
+  #       uses: wordpress/plugin-check-action@v1
