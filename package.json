@@ -22,7 +22,7 @@
 	},
 	"main": "build/core/index.js",
 	"devDependencies": {
-		"@wordpress/scripts": "^28.5.0"
+		"@wordpress/scripts": "^30.0.6"
 	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
@@ -35,7 +35,7 @@
 		"lint:js:fix": "wp-scripts lint-js --fix",
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
-		"packages-update": "wp-scripts packages-update",
+		"packages-update": "wp-scripts packages-update --dist-tag=wp-6.7",
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start --webpack-copy-php",
 		"cs:check": "composer run-script check-cs",

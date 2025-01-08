@@ -45,6 +45,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							placeholder="Default Product Catalog"
 							min={ 1 }
 							step={ 1 }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<p>
 							To obtain the List ID for custom or brand catalogs,
@@ -85,6 +86,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { cards: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<ToggleControl
 							label="Force Description"
@@ -97,6 +99,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { descForce: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>
@@ -120,6 +123,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { announcement: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<p>
 							When enabled, Announcement will render only when the
@@ -155,6 +159,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { available: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<ToggleControl
 							label="Display Available In Tooltips"
@@ -168,6 +173,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { tooltip: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>
