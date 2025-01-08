@@ -67,7 +67,7 @@ jobs:
 
   # wp_plugin_check:
   #   runs-on: ubuntu-latest
-  #   name: WoredPress Plugin Check
+  #   name: WordPress Plugin Check
   #   needs: wp_node_linting
 
   #   steps:
