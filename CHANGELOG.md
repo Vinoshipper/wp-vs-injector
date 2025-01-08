@@ -2,6 +2,11 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
+## 1.2.0 - 2025-01-08
+
+* Update WordPress support files.
+* Require WordPress 6.7+
+
 ## 1.1.0 - 2024-08-16
 
 * Add: Announcement component
