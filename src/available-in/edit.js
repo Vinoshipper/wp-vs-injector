@@ -39,6 +39,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { tooltip: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>

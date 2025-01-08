@@ -1,19 +1,19 @@
-@import "../core/style-includes";
+@use "../core/style-includes" as VsStyleIncludes;
 
 .wp-block-vinoshipper-injector-product-catalog {
 
 	.vs-injector-block-announcement {
 
-		@include vs-injector-base-block();
+		@include VsStyleIncludes.vs-injector-base-block();
 	}
 
 	.vs-injector-block-available-in {
 
-		@include vs-injector-base-block();
+		@include VsStyleIncludes.vs-injector-base-block();
 	}
 
 	.vs-injector-block-product-catalog {
 
-		@include vs-injector-base-block();
+		@include VsStyleIncludes.vs-injector-base-block();
 	}
 }

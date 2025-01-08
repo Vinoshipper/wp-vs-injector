@@ -178,6 +178,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									? 'The form will pre-select this club when loading.'
 									: 'The user must select a club. If only one club is available, the form will pre-select that club.'
 							}
+							__nextHasNoMarginBottom={ true }
 						/>
 					</PanelRow>
 				</PanelBody>
@@ -196,6 +197,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( { headline: null } );
 								}
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>

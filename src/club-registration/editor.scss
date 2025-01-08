@@ -1,9 +1,9 @@
-@import "../core/style-includes";
+@use "../core/style-includes" as VsStyleIncludes;
 
 .wp-block-vinoshipper-injector-club-registration {
 
 	.vs-injector-block-club-registration {
 
-		@include vs-injector-base-block();
+		@include VsStyleIncludes.vs-injector-base-block();
 	}
 }

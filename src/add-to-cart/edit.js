@@ -112,6 +112,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ getProducer().id })
 								</div>
 							}
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>
@@ -128,6 +129,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { includeQty: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<TextControl
 							label="Product Units"
@@ -139,6 +141,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { productUnits: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>

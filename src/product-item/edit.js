@@ -107,6 +107,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ getProducer().id })
 								</div>
 							}
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>
@@ -135,6 +136,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { cards: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<ToggleControl
 							label="Display Product Image"
@@ -147,6 +149,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { image: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 						<ToggleControl
 							label="Force Description"
@@ -159,6 +162,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							onChange={ ( newValue ) => {
 								setAttributes( { descForce: newValue } );
 							} }
+							__nextHasNoMarginBottom={ true }
 						/>
 					</fieldset>
 				</PanelBody>
