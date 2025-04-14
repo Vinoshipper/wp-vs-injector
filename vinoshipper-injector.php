@@ -133,6 +133,10 @@ add_filter( 'block_categories_all', 'vs_injector_block_categories_init' );
  * @since 0.1.0
  */
 function vs_injector_block_init() {
+	wp_register_block_metadata_collection(
+		__DIR__ . '/build',
+		__DIR__ . '/build/blocks-manifest.php'
+	);
 	register_block_type( __DIR__ . '/build/core' );
 	register_block_type( __DIR__ . '/build/product-catalog' );
 	register_block_type( __DIR__ . '/build/product-item' );

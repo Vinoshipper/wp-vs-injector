@@ -22,10 +22,12 @@
 	},
 	"main": "build/core/index.js",
 	"devDependencies": {
-		"@wordpress/scripts": "^30.0.6"
+		"@wordpress/scripts": "^30.15.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
+		"postbuild": "npm run build-blocks-manifest",
+		"build-blocks-manifest": "wp-scripts build-blocks-manifest",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
 		"format": "wp-scripts format",
