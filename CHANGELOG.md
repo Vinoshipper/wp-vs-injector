@@ -2,6 +2,11 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
+## 1.2.1 - 2025-04-14
+
+* Update WordPress support files.
+* Improve initial loading of blocks.
+
 ## 1.2.0 - 2025-01-08
 
 * Update WordPress support files.
