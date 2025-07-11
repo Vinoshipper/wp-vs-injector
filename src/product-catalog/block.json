@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/product-catalog",
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"title": "Product Catalog",
 	"category": "vinoshipper",
 	"icon": "list-view",

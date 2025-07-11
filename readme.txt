@@ -3,7 +3,7 @@ Contributors:      vinoshipper, theseg
 Tags:              block
 Requires at least: 6.7
 Tested up to:      6.8
-Stable tag:        1.2.1
+Stable tag:        1.2.2
 Requires PHP:      7.4
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
@@ -30,6 +30,7 @@ The plugin includes the following components and Gutenberg blocks:
 * **Product Catalog** - Display a list of your available products. Choose your default list or create a custom list of your products.
 * **Product Item** - Display information, image, and include buy buttons for a specific product.
 * **Add-To-Cart Button** - Display buy buttons for a specific product.
+* **Announcement** - Display announcements managed in the Vinoshipper Producer dashboard.
 * **Available In** - Show which states you're able to ship product to.
 * **Club Registration** - Allow customers to sign up for your clubs.
 
@@ -65,6 +66,10 @@ If you wish to further customize the display of Vinoshipper components, we offer
 Please report bugs in the [Vinoshipper Injector WordPress repository on GitHub](https://github.com/Vinoshipper/wp-vs-injector). Note that GitHub is not a support forum but an efficient platform for addressing and resolving issues efficiently. If you have issues with your Vinoshipper account, please contact [Vinoshipper Support](https://vinoshipper.freshdesk.com/)
 
 == Changelog ==
+
+= 1.2.2 =
+* Fix display of custom Product Catalogs.
+* Update WordPress support files.
 
 = 1.2.1 =
 * Update WordPress support files.
