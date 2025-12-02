@@ -1,78 +1,78 @@
 name: WordPress Coding Standards
 
 on:
-  push:
-    branches:
-      - develop
-      - main
-  pull_request:
-    branches:
-      - develop
-      - main
+    push:
+        branches:
+            - develop
+            - main
+    pull_request:
+        branches:
+            - develop
+            - main
 
 # Cancel previous workflow run groups that have not completed.
 concurrency:
-  # Group workflow runs by workflow name, along with the head branch ref of the pull request
-  # or otherwise the branch or tag ref.
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-  cancel-in-progress: true
+    # Group workflow runs by workflow name, along with the head branch ref of the pull request
+    # or otherwise the branch or tag ref.
+    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  wp_node_linting:
-    runs-on: ubuntu-latest
-    name: WordPress Node Linting
+    wp_node_linting:
+        runs-on: ubuntu-latest
+        name: WordPress Node Linting
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/iron
-          cache: 'npm'
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: lts/iron
+                  cache: 'npm'
 
-      - name: Install Node Modules
-        run: npm install
+            - name: Install Node Modules
+              run: npm install
 
-      - name: Run Style Lint
-        run: npm run lint:css
+            - name: Run Style Lint
+              run: npm run lint:css
 
-      - name: Run JavaScript Lint
-        run: npm run lint:js
+            - name: Run JavaScript Lint
+              run: npm run lint:js
 
-  phpcs:
-    runs-on: ubuntu-latest
-    name: PHPCS
-    needs: wp_node_linting
+    phpcs:
+        runs-on: ubuntu-latest
+        name: PHPCS
+        needs: wp_node_linting
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
-          tools: composer:v2
-          coverage: none
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.2
+                  tools: composer:v2
+                  coverage: none
 
-      - name: Install PHP dependencies
-        uses: ramsey/composer-install@v3
-        with:
-          composer-options: "--no-progress"
+            - name: Install PHP dependencies
+              uses: ramsey/composer-install@v3
+              with:
+                  composer-options: '--no-progress'
 
-      - name: Run PHPCS
-        run: composer run-script check-cs
+            - name: Run PHPCS
+              run: composer run-script check-cs
 
-  # wp_plugin_check:
-  #   runs-on: ubuntu-latest
-  #   name: WordPress Plugin Check
-  #   needs: wp_node_linting
+    # wp_plugin_check:
+    #   runs-on: ubuntu-latest
+    #   name: WordPress Plugin Check
+    #   needs: wp_node_linting
 
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
+    #   steps:
+    #     - name: Checkout
+    #       uses: actions/checkout@v4
 
-  #     - name: Run WP Plugin Check
-  #       uses: wordpress/plugin-check-action@v1
+    #     - name: Run WP Plugin Check
+    #       uses: wordpress/plugin-check-action@v1

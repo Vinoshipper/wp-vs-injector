@@ -1,35 +1,35 @@
 name: Release is Published
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+    push:
+        tags:
+            - 'v*.*.*'
 
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    name: New Release
+    run:
+        runs-on: ubuntu-latest
+        name: New Release
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/iron
-          cache: 'npm'
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: lts/iron
+                  cache: 'npm'
 
-      - name: Install Node Modules
-        run: npm install
+            - name: Install Node Modules
+              run: npm install
 
-      - name: Build Blocks
-        run: npm run build
+            - name: Build Blocks
+              run: npm run build
 
-      - name: Create Artifact
-        run: npm run plugin-zip
+            - name: Create Artifact
+              run: npm run plugin-zip
 
-      - name: Upload Artifact
-        uses: softprops/action-gh-release@v2
-        with:
-          files: vinoshipper-injector.zip
+            - name: Upload Artifact
+              uses: softprops/action-gh-release@v2
+              with:
+                  files: vinoshipper-injector.zip

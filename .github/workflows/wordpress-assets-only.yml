@@ -1,31 +1,31 @@
 name: Update Assets to WordPress.org Repository
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
 # Ensures that only one deploy task per branch/environment will run at a time.
 concurrency:
-  group: wp-assets-only
-  cancel-in-progress: true
+    group: wp-assets-only
+    cancel-in-progress: true
 
 jobs:
-  deploy_to_wp_repo:
-    if: github.ref_name == github.event.repository.default_branch
-    runs-on: ubuntu-latest
-    name: Assets Only Deploy to WP.org
+    deploy_to_wp_repo:
+        if: github.ref_name == github.event.repository.default_branch
+        runs-on: ubuntu-latest
+        name: Assets Only Deploy to WP.org
 
-    steps:
-      - name: Install Subversion
-        run: sudo apt-get update && sudo apt-get install -y subversion
+        steps:
+            - name: Install Subversion
+              run: sudo apt-get update && sudo apt-get install -y subversion
 
-      - name: Checkout
-        uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: WordPress Plugin Assets Deploy
-        id: deploy
-        uses: 10up/action-wordpress-plugin-asset-update@stable
-        env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: ${{ secrets.SLUG }}
-          ASSETS_DIR: assets
+            - name: WordPress Plugin Assets Deploy
+              id: deploy
+              uses: 10up/action-wordpress-plugin-asset-update@stable
+              env:
+                  SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+                  SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+                  SLUG: ${{ secrets.SLUG }}
+                  ASSETS_DIR: assets

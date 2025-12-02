@@ -2,6 +2,12 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
+## 1.2.3 - 2025-12-02
+
+* Minor fixes to WordPress Plugin Standards.
+* Add support to WordPress 6.9+
+* Update WordPress support files.
+
 ## 1.2.2 - 2025-07-11
 
 * Fix display of custom Product Catalogs.

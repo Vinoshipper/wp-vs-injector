@@ -74,7 +74,6 @@ class Vs_Injector {
 		$this->plugin_name = 'vs-injector';
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 	}
@@ -85,7 +84,6 @@ class Vs_Injector {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Vs_Injector_Loader. Orchestrates the hooks of the plugin.
-	 * - Vs_Injector_I18n. Defines internationalization functionality.
 	 * - Vs_Injector_Admin. Defines all hooks for the admin area.
 	 * - Vs_Injector_Public. Defines all hooks for the public side of the site.
 	 *
@@ -104,12 +102,6 @@ class Vs_Injector {
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-vs-injector-loader.php';
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-vs-injector-i18n.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'admin/class-vs-injector-admin.php';
@@ -121,22 +113,6 @@ class Vs_Injector {
 		require_once plugin_dir_path( __DIR__ ) . 'public/class-vs-injector-public.php';
 
 		$this->loader = new Vs_Injector_Loader();
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Vs_Injector_I18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    0.1.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Vs_Injector_I18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 
 	/**

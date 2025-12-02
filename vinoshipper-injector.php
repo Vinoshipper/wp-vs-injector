@@ -5,7 +5,7 @@
  * Description:       Incorporate Vinoshipper components in WordPress.
  * Requires at least: 6.7
  * Requires PHP:      7.4
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Vinoshipper
  * Author URI:        https://www.vinoshipper.com
  * License:           GPL-3.0-or-later
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.1.0
  */
-define( 'VS_INJECTOR_VERSION', '1.2.2' );
+define( 'VS_INJECTOR_VERSION', '1.2.3' );
 
 /**
  * VS Themes
@@ -116,7 +116,7 @@ vs_injector_run();
 function vs_injector_block_categories_init( $block_categories ) {
 	$block_categories[] = array(
 		'slug'  => 'vinoshipper',
-		'title' => __( 'Vinoshipper Injector', 'vinoshipper' ),
+		'title' => __( 'Vinoshipper Injector', 'vinoshipper-injector' ),
 		'icon'  => null,
 	);
 
