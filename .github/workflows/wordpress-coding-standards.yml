@@ -24,12 +24,12 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Setup Node
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
-                  node-version: lts/iron
+                  node-version: lts/krypton
                   cache: 'npm'
 
             - name: Install Node Modules
@@ -48,12 +48,12 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: 8.2
+                  php-version: 8.5
                   tools: composer:v2
                   coverage: none
 
@@ -72,7 +72,7 @@ jobs:
 
     #   steps:
     #     - name: Checkout
-    #       uses: actions/checkout@v4
+    #       uses: actions/checkout@v6
 
     #     - name: Run WP Plugin Check
     #       uses: wordpress/plugin-check-action@v1

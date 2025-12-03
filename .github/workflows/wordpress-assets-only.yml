@@ -19,7 +19,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y subversion
 
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: WordPress Plugin Assets Deploy
               id: deploy

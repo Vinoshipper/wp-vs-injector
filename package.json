@@ -17,8 +17,8 @@
 		"url": "https://github.com/Vinoshipper/wp-vs-injector/issues"
 	},
 	"engines": {
-		"node": ">= 20.9",
-		"npm": ">= 10.1"
+		"node": ">= 24.11",
+		"npm": ">= 11.6"
 	},
 	"main": "build/core/index.js",
 	"devDependencies": {
