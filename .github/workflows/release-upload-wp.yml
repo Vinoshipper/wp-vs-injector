@@ -1,40 +1,40 @@
 name: Deploy to WordPress.org Repository
 
 on:
-  release:
-    types: [released]
+    release:
+        types: [released]
 
 jobs:
-  deploy_to_wp_repo:
-    runs-on: ubuntu-latest
-    name: Deploy to WP.org
+    deploy_to_wp_repo:
+        runs-on: ubuntu-latest
+        name: Deploy to WP.org
 
-    steps:
-      - name: Install Subversion
-        run: sudo apt-get update && sudo apt-get install -y subversion
+        steps:
+            - name: Install Subversion
+              run: sudo apt-get update && sudo apt-get install -y subversion
 
-      - name: Checkout
-        uses: actions/checkout@v4
+            - name: Checkout
+              uses: actions/checkout@v6
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/iron
-          cache: 'npm'
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: lts/krypton
+                  cache: 'npm'
 
-      - name: Install Node Modules
-        run: npm install
+            - name: Install Node Modules
+              run: npm install
 
-      - name: Build Project
-        run: npm run build
+            - name: Build Project
+              run: npm run build
 
-      - name: WordPress Plugin Deploy
-        id: deploy
-        uses: 10up/action-wordpress-plugin-deploy@stable
-        with:
-          generate-zip: true
-        env:
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SLUG: ${{ secrets.SLUG }}
-          ASSETS_DIR: assets
+            - name: WordPress Plugin Deploy
+              id: deploy
+              uses: 10up/action-wordpress-plugin-deploy@stable
+              with:
+                  generate-zip: true
+              env:
+                  SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+                  SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+                  SLUG: ${{ secrets.SLUG }}
+                  ASSETS_DIR: assets

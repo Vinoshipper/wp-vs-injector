@@ -3,7 +3,7 @@
 		"php": "8.3",
 		"wp": "latest"
 	},
-	"phpExtensionBundles": ["kitchen-sink"],
+	"phpExtensionBundles": [ "kitchen-sink" ],
 	"landingPage": "/wp-admin/admin.php?page=vs_injector_settings",
 	"features": {
 		"networking": true
