@@ -26,9 +26,9 @@ import vsIcon from '../core/vinoshipper.svg';
 export default function Edit( { attributes, setAttributes } ) {
 	const { allow, defaultClub, headline, clubsDisplayAll } = attributes;
 
-	const targetAccountId = useSelect( (select) => {
-		return select('core').getSite()?.vs_injector_account_id ?? null
-	});
+	const targetAccountId = useSelect( ( select ) => {
+		return select( 'core' ).getSite()?.vs_injector_account_id ?? null;
+	} );
 
 	const { producer, availableClubs } = useSelect( ( select ) => {
 		return {

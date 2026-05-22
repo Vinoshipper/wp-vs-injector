@@ -12,7 +12,6 @@
  * @subpackage VinoshipperInjector/includes
  */
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

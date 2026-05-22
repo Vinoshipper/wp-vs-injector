@@ -23,13 +23,12 @@ import vsIcon from '../core/vinoshipper.svg';
 export default function Edit( { attributes, setAttributes } ) {
 	const { productId, accountId, includeQty, productUnits } = attributes;
 
-	const targetAccountId = useSelect( (select) => {
+	const targetAccountId = useSelect( ( select ) => {
 		if ( accountId ) {
-			return accountId
-		} else {
-			return select('core').getSite()?.vs_injector_account_id ?? null
+			return accountId;
 		}
-	});
+		return select( 'core' ).getSite()?.vs_injector_account_id ?? null;
+	} );
 
 	const { producer, products, productsOptions } = useSelect( ( select ) => {
 		return {
