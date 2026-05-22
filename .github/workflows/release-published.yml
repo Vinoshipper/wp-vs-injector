@@ -30,6 +30,6 @@ jobs:
               run: npm run plugin-zip
 
             - name: Upload Artifact
-              uses: softprops/action-gh-release@v2
+              uses: softprops/action-gh-release@v3
               with:
                   files: vinoshipper-injector.zip

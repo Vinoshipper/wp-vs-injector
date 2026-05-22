@@ -39,7 +39,7 @@ jobs:
               run: npm run lint:css
 
             - name: Run JavaScript Lint
-              run: npm run lint:js
+              run: npm run lint:js:src
 
     phpcs:
         runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
                   coverage: none
 
             - name: Install PHP dependencies
-              uses: ramsey/composer-install@v3
+              uses: ramsey/composer-install@v4
               with:
                   composer-options: '--no-progress'
 

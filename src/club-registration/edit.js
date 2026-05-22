@@ -26,8 +26,9 @@ import vsIcon from '../core/vinoshipper.svg';
 export default function Edit( { attributes, setAttributes } ) {
 	const { allow, defaultClub, headline, clubsDisplayAll } = attributes;
 
-	const targetAccountId =
-		wp.data.select( 'core' ).getSite().vs_injector_account_id ?? null;
+	const targetAccountId = useSelect( ( select ) => {
+		return select( 'core' ).getSite()?.vs_injector_account_id ?? null;
+	} );
 
 	const { producer, availableClubs } = useSelect( ( select ) => {
 		return {
@@ -179,6 +180,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									: 'The user must select a club. If only one club is available, the form will pre-select that club.'
 							}
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 					</PanelRow>
 				</PanelBody>
@@ -198,6 +200,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								}
 							} }
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 					</fieldset>
 				</PanelBody>
