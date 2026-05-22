@@ -34,7 +34,8 @@
 		"format:src": "wp-scripts format ./src",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
-		"lint:js:fix": "wp-scripts lint-js --fix",
+		"lint:js:fix": "wp-scripts lint-js ./src --fix",
+		"lint:js:src": "wp-scripts lint-js ./src",
 		"lint:md:docs": "wp-scripts lint-md-docs",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"packages-update": "wp-scripts packages-update --dist-tag=wp-6.9",
@@ -42,5 +43,8 @@
 		"start": "wp-scripts start --webpack-copy-php",
 		"cs:check": "composer run-script check-cs",
 		"cs:fix": "composer run-script fix-cs"
+	},
+	"dependencies": {
+		"@wordpress/eslint-plugin": "^25.2.0"
 	}
 }

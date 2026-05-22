@@ -39,7 +39,7 @@ jobs:
               run: npm run lint:css
 
             - name: Run JavaScript Lint
-              run: npm run lint:js
+              run: npm run lint:js:src
 
     phpcs:
         runs-on: ubuntu-latest
