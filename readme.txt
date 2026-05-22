@@ -70,6 +70,7 @@ Please report bugs in the [Vinoshipper Injector WordPress repository on GitHub](
 = 1.3.0 =
 * Add support to WordPress 7.0+
 * Update WordPress support files.
+* Fix issue with rendering blocks in editor mode.
 
 = 1.2.3 =
 * Minor fixes to WordPress Plugin Standards.
