@@ -46,6 +46,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							min={ 1 }
 							step={ 1 }
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 						<p>
 							To obtain the List ID for custom or brand catalogs,
@@ -87,6 +88,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { cards: newValue } );
 							} }
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 						<ToggleControl
 							label="Force Description"

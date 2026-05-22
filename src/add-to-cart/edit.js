@@ -23,11 +23,13 @@ import vsIcon from '../core/vinoshipper.svg';
 export default function Edit( { attributes, setAttributes } ) {
 	const { productId, accountId, includeQty, productUnits } = attributes;
 
-	let targetAccountId =
-		wp.data.select( 'core' ).getSite().vs_injector_account_id ?? null;
-	if ( accountId ) {
-		targetAccountId = accountId;
-	}
+	const targetAccountId = useSelect( (select) => {
+		if ( accountId ) {
+			return accountId
+		} else {
+			return select('core').getSite()?.vs_injector_account_id ?? null
+		}
+	});
 
 	const { producer, products, productsOptions } = useSelect( ( select ) => {
 		return {
@@ -113,6 +115,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								</div>
 							}
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 					</fieldset>
 				</PanelBody>
@@ -142,6 +145,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								setAttributes( { productUnits: newValue } );
 							} }
 							__nextHasNoMarginBottom={ true }
+							__next40pxDefaultSize={ true }
 						/>
 					</fieldset>
 				</PanelBody>
