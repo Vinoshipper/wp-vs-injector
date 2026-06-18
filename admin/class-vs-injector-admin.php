@@ -294,6 +294,24 @@ class Vs_Injector_Admin {
 				'label_for' => 'vs_injector_cart_button',
 			)
 		);
+
+		// Section: Legacy Options.
+		add_settings_section(
+			'vs_injector_settings_section',
+			'Legacy Options',
+			array( $this, 'settings_section_legacy_callback' ),
+			'vs_injector_settings_section_legacy'
+		);
+		add_settings_field(
+			'vs_injector_settings_section_legacy_202310',
+			'Legacy Mode',
+			array( $this, 'settings_legacy_202310_input' ),
+			'vs_injector_settings_section_legacy',
+			'vs_injector_settings_section',
+			array(
+				'label_for' => 'vs_injector_legacy_202310',
+			)
+		);
 	}
 
 	/**
@@ -392,5 +410,24 @@ class Vs_Injector_Admin {
 		echo '<input type="checkbox" id="vs_injector_cart_button" name="vs_injector_cart_button" value="1"' . checked( 1, $selected_option, false ) . '/>';
 		echo '<p>Display the cart button.</p>';
 		echo '<p>Note: If you disable the cart button, you will need to implement your own cart button.</p>';
+	}
+
+	/**
+	 * Legacy Functions
+	 *
+	 * @since    1.4.0
+	 */
+	public function settings_section_legacy_callback() {
+	}
+
+	/**
+	 * Legacy Functions - 2023.06 Legacy Flag
+	 *
+	 * @since    1.4.0
+	 */
+	public function settings_legacy_202310_input() {
+		$selected_option = get_option( 'vs_injector_legacy_202310' );
+		echo '<input type="checkbox" id="vs_injector_legacy_202310" name="vs_injector_legacy_202310" value="1"' . checked( 1, $selected_option, false ) . '/>';
+		echo '<p>Enabling Legacy Mode will restore the 2023.10 component layout. Use this if your existing page has heavy customizations and you need time to adapt to the new layout.</p>';
 	}
 }
