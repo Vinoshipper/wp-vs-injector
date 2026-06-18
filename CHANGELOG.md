@@ -2,6 +2,10 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
+## 1.4.0 - 2026-06-18
+
+* Add admin setting for Legacy Mode.
+
 ## 1.3.0 - 2025-12-02
 
 * Add support to WordPress 7.0+
