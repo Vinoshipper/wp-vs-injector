@@ -71,9 +71,10 @@ class Vs_Injector_Public {
 		$temp_account_id = get_option( 'vs_injector_account_id' );
 
 		if ( is_numeric( $temp_account_id ) ) {
-			$temp_theme      = get_option( 'vs_injector_theme' );
-			$temp_theme_dark = boolval( get_option( 'vs_injector_theme_dark' ) );
-			$computed_theme  = null;
+			$temp_theme         = get_option( 'vs_injector_theme' );
+			$temp_theme_dark    = boolval( get_option( 'vs_injector_theme_dark' ) );
+			$temp_legacy_202310 = boolval( get_option( 'vs_injector_legacy_202310', false ) );
+			$computed_theme     = null;
 
 			if ( $temp_theme && $temp_theme_dark ) {
 				$computed_theme = $temp_theme . '-dark';
@@ -83,12 +84,15 @@ class Vs_Injector_Public {
 				$computed_theme = 'dark';
 			}
 
-			$settings       = array(
+			$settings = array(
 				'vsPlugin'     => 'vs-wordpress:' . esc_html( VS_INJECTOR_VERSION ),
 				'theme'        => $computed_theme,
 				'cartPosition' => get_option( 'vs_injector_cart_position', 'end' ),
 				'cartButton'   => boolval( get_option( 'vs_injector_cart_button', true ) ),
 			);
+			if ( true === $temp_legacy_202310 ) {
+				$settings['legacyMode'] = '202310';
+			}
 			$script_content = 'window.wpVsInjectorSettings = ' . wp_json_encode( $settings ) . ';
 			window.document.addEventListener(\'vinoshipper:loaded\', () => {
 				window.Vinoshipper.init(' . esc_html( $temp_account_id ) . ', window.wpVsInjectorSettings);
@@ -158,6 +162,18 @@ class Vs_Injector_Public {
 				'description'  => 'Display the cart button',
 				'show_in_rest' => true,
 				'default'      => true,
+			)
+		);
+
+		// Legacy Options.
+		register_setting(
+			'vs_injector_settings',
+			'vs_injector_legacy_202310',
+			array(
+				'type'         => 'boolean',
+				'description'  => 'Enable the 2023.10 legacy mode for Vinoshipper Injector.',
+				'show_in_rest' => true,
+				'default'      => false,
 			)
 		);
 	}

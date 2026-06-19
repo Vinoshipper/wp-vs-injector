@@ -30,6 +30,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	do_settings_sections( 'vs_injector_settings_section_general' );
 	do_settings_sections( 'vs_injector_settings_section_theme' );
 	do_settings_sections( 'vs_injector_settings_section_cart' );
+	do_settings_sections( 'vs_injector_settings_section_legacy' );
 	submit_button( ( esc_html__( 'Save Settings', 'vinoshipper-injector' ) ) );
 	?>
 	</form>
