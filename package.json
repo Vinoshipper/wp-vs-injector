@@ -1,6 +1,6 @@
 {
 	"name": "vinoshipper-injector",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"description": "A WordPress plugin providing access to the Vinoshipper Injector.",
 	"author": "Vinoshipper (https://www.vinoshipper.com)",
 	"license": "GPL-3.0-or-later",
@@ -17,15 +17,15 @@
 		"url": "https://github.com/Vinoshipper/wp-vs-injector/issues"
 	},
 	"engines": {
-		"node": ">= 24.11",
-		"npm": ">= 11.6"
+		"node": ">= 24.21",
+		"npm": ">= 11.19"
 	},
 	"main": "build/core/index.js",
 	"dependencies": {
-		"@wordpress/eslint-plugin": "^25.4.1"
+		"@wordpress/eslint-plugin": "^26.0.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^32.4.1"
+		"@wordpress/scripts": "^35.0.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
