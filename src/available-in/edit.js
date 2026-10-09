@@ -9,17 +9,6 @@ import { PanelBody, ToggleControl } from '@wordpress/components';
 import './editor.scss';
 import vsIcon from '../core/vinoshipper.svg';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @param {any} root0
- * @param {any} root0.attributes
- * @param {any} root0.setAttributes
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 export default function Edit( { attributes, setAttributes } ) {
 	const { tooltip, shipsTo, otherDelivery, restricted, notShipsTo } =
 		attributes;
@@ -41,8 +30,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							disabled={
 								shipsTo
 									? ! otherDelivery &&
-									  ! restricted &&
-									  ! notShipsTo
+										! restricted &&
+										! notShipsTo
 									: false
 							}
 							onChange={ ( newValue ) => {
@@ -79,8 +68,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							disabled={
 								restricted
 									? ! shipsTo &&
-									  ! otherDelivery &&
-									  ! notShipsTo
+										! otherDelivery &&
+										! notShipsTo
 									: false
 							}
 							onChange={ ( newValue ) => {
@@ -99,8 +88,8 @@ export default function Edit( { attributes, setAttributes } ) {
 							disabled={
 								notShipsTo
 									? ! shipsTo &&
-									  ! otherDelivery &&
-									  ! restricted
+										! otherDelivery &&
+										! restricted
 									: false
 							}
 							onChange={ ( newValue ) => {

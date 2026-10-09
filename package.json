@@ -22,10 +22,10 @@
 	},
 	"main": "build/core/index.js",
 	"dependencies": {
-		"@wordpress/eslint-plugin": "^26.0.0"
+		"@wordpress/eslint-plugin": "^27.1.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^35.0.0"
+		"@wordpress/scripts": "^36.1.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",

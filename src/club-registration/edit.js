@@ -12,17 +12,6 @@ import {
 import './editor.scss';
 import vsIcon from '../core/vinoshipper.svg';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @param {any} root0
- * @param {any} root0.attributes
- * @param {any} root0.setAttributes
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 export default function Edit( { attributes, setAttributes } ) {
 	const { allow, defaultClub, headline, clubsDisplayAll } = attributes;
 
