@@ -1,6 +1,7 @@
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	PanelBody,
+	PanelRow,
 	ToggleControl,
 	SelectControl,
 	TextControl,
@@ -20,8 +21,50 @@ import vsIcon from '../core/vinoshipper.svg';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { cards, list, available, announcement, tooltip, descForce } =
-		attributes;
+	const {
+		cards,
+		list,
+		available,
+		availableShipsTo,
+		availableOtherDelivery,
+		availableRestricted,
+		availableNotShipsTo,
+		announcement,
+		tooltip,
+		descForce,
+	} = attributes;
+
+	function getAvailableInSectionSelectionStatus( requester ) {
+		if ( available ) {
+			if ( requester === 'availableShipsTo' ) {
+				return availableShipsTo
+					? ! availableOtherDelivery &&
+							! availableRestricted &&
+							! availableNotShipsTo
+					: false;
+			} else if ( requester === 'availableOtherDelivery' ) {
+				return availableOtherDelivery
+					? ! availableShipsTo &&
+							! availableRestricted &&
+							! availableNotShipsTo
+					: false;
+			} else if ( requester === 'availableRestricted' ) {
+				return availableRestricted
+					? ! availableShipsTo &&
+							! availableOtherDelivery &&
+							! availableNotShipsTo
+					: false;
+			} else if ( requester === 'availableNotShipsTo' ) {
+				return availableNotShipsTo
+					? ! availableShipsTo &&
+							! availableOtherDelivery &&
+							! availableRestricted
+					: false;
+			}
+			return false;
+		}
+		return true;
+	}
 
 	return (
 		<div { ...useBlockProps() }>
@@ -110,10 +153,12 @@ export default function Edit( { attributes, setAttributes } ) {
 					initialOpen={ false }
 				>
 					<fieldset>
-						<p>
-							If using the standalone Announcement component, turn
-							off &quot;Display Announcement&quot;.
-						</p>
+						<PanelRow>
+							<p>
+								If using the standalone Announcement component,
+								turn off &quot;Display Announcement&quot;.
+							</p>
+						</PanelRow>
 						<ToggleControl
 							label="Display Announcement"
 							help={
@@ -145,39 +190,107 @@ export default function Edit( { attributes, setAttributes } ) {
 					title="'Available In' Component"
 					initialOpen={ false }
 				>
-					<fieldset>
+					<PanelRow>
 						<p>
-							If using the standalone Available In component, turn
-							off &quot;Display Available In&quot;.
+							If using the standalone Available In component, off
+							&quot;Display Available In&quot;.
 						</p>
-						<ToggleControl
-							label="Display Available In"
-							help={
-								available
-									? 'Display the "Available In" component.'
-									: 'Do not display the "Available In" component.'
-							}
-							checked={ available }
-							onChange={ ( newValue ) => {
-								setAttributes( { available: newValue } );
-							} }
-							__nextHasNoMarginBottom={ true }
-						/>
-						<ToggleControl
-							label="Display Available In Tooltips"
-							help={
-								tooltip
-									? 'Display tooltips when hovering over state code.'
-									: 'Do not display tooltips when hovering over state code.'
-							}
-							disabled={ ! available }
-							checked={ tooltip }
-							onChange={ ( newValue ) => {
-								setAttributes( { tooltip: newValue } );
-							} }
-							__nextHasNoMarginBottom={ true }
-						/>
-					</fieldset>
+					</PanelRow>
+					<ToggleControl
+						label="Display Available In"
+						help={
+							available
+								? 'Display the "Available In" component.'
+								: 'Do not display the "Available In" component.'
+						}
+						checked={ available }
+						onChange={ ( newValue ) => {
+							setAttributes( { available: newValue } );
+						} }
+						__nextHasNoMarginBottom={ true }
+					/>
+					<ToggleControl
+						label="Display Available In Tooltips"
+						help={
+							tooltip
+								? 'Display tooltips when hovering over state code.'
+								: 'Do not display tooltips when hovering over state code.'
+						}
+						disabled={ ! available }
+						checked={ tooltip }
+						onChange={ ( newValue ) => {
+							setAttributes( { tooltip: newValue } );
+						} }
+					/>
+					<PanelRow>
+						<p>At least one section is required for display.</p>
+					</PanelRow>
+					<ToggleControl
+						label="States Shippable"
+						help={
+							availableShipsTo
+								? 'Display states that alcoholic products can ship to.'
+								: 'Do not display states that alcoholic products can ship to.'
+						}
+						checked={ availableShipsTo }
+						disabled={ getAvailableInSectionSelectionStatus(
+							'availableShipsTo'
+						) }
+						onChange={ ( newValue ) => {
+							setAttributes( { availableShipsTo: newValue } );
+						} }
+						__nextHasNoMarginBottom={ true }
+					/>
+					<ToggleControl
+						label="Other Delivery Methods"
+						help={
+							availableOtherDelivery
+								? 'Display methods such as "Local Delivery" or "Pick Up" when available.'
+								: 'Do not display states that alcoholic products can ship to.'
+						}
+						checked={ availableOtherDelivery }
+						disabled={ getAvailableInSectionSelectionStatus(
+							'availableOtherDelivery'
+						) }
+						onChange={ ( newValue ) => {
+							setAttributes( {
+								availableOtherDelivery: newValue,
+							} );
+						} }
+						__nextHasNoMarginBottom={ true }
+					/>
+					<ToggleControl
+						label="Restricted States"
+						help={
+							availableRestricted
+								? 'Display states where not all alcoholic products are available to ship.'
+								: 'Do not display states where not all alcoholic products are available to ship.'
+						}
+						checked={ availableRestricted }
+						disabled={ getAvailableInSectionSelectionStatus(
+							'availableRestricted'
+						) }
+						onChange={ ( newValue ) => {
+							setAttributes( { availableRestricted: newValue } );
+						} }
+						__nextHasNoMarginBottom={ true }
+					/>
+					<ToggleControl
+						label="States Not Shippable"
+						help={
+							availableNotShipsTo
+								? 'Display states where alcoholic products are not available to ship.'
+								: 'Do not display states where alcoholic products are not available to ship.'
+						}
+						checked={ availableNotShipsTo }
+						disabled={ getAvailableInSectionSelectionStatus(
+							'availableNotShipsTo'
+						) }
+						onChange={ ( newValue ) => {
+							setAttributes( { availableNotShipsTo: newValue } );
+						} }
+						__nextHasNoMarginBottom={ true }
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<div className="vs-injector-block-editor-content">
@@ -208,11 +321,29 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 							<h2>Available In</h2>
 						</div>
-						{ ! tooltip && (
-							<ul>
-								<li>Will hide Tooltips</li>
-							</ul>
-						) }
+						<ul>
+							{ availableShipsTo && (
+								<li>
+									Will display states with shipping enabled.
+								</li>
+							) }
+							{ availableOtherDelivery && (
+								<li>Will display other delivery methods.</li>
+							) }
+							{ availableRestricted && (
+								<li>
+									Will display states with restricted
+									products.
+								</li>
+							) }
+							{ availableNotShipsTo && (
+								<li>
+									Will display states where alcoholic products
+									will not be shipped.
+								</li>
+							) }
+							{ ! tooltip && <li>Will hide Tooltips</li> }
+						</ul>
 						<p>View page to see the fully rendered component.</p>
 					</div>
 				) }

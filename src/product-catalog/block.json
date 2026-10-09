@@ -30,6 +30,22 @@
 			"type": "boolean",
 			"default": true
 		},
+		"availableShipsTo": {
+			"type": "boolean",
+			"default": true
+		},
+		"availableOtherDelivery": {
+			"type": "boolean",
+			"default": true
+		},
+		"availableRestricted": {
+			"type": "boolean",
+			"default": true
+		},
+		"availableNotShipsTo": {
+			"type": "boolean",
+			"default": false
+		},
 		"announcement": {
 			"type": "boolean",
 			"default": true

@@ -20,6 +20,22 @@
 		"tooltip": {
 			"type": "boolean",
 			"default": true
+		},
+		"shipsTo": {
+			"type": "boolean",
+			"default": true
+		},
+		"otherDelivery": {
+			"type": "boolean",
+			"default": true
+		},
+		"restricted": {
+			"type": "boolean",
+			"default": true
+		},
+		"notShipsTo": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

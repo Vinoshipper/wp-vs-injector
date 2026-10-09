@@ -20,14 +20,28 @@ if ( isset( $attributes['cards'] ) ) {
 if ( isset( $attributes['list'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-list'] = (int) $attributes['list'];
 }
-if ( isset( $attributes['available'] ) ) {
-	$vs_injector_wrapper_pre_attributes['data-vs-available'] = boolval( $attributes['available'] ) ? 'true' : 'false';
-}
 if ( isset( $attributes['announcement'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-announcement'] = boolval( $attributes['announcement'] ) ? 'true' : 'false';
 }
+
+/** Available In settings */
+if ( isset( $attributes['available'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-available'] = boolval( $attributes['available'] ) ? 'true' : 'false';
+}
 if ( isset( $attributes['tooltip'] ) ) {
 	$vs_injector_wrapper_pre_attributes['data-vs-tooltips'] = boolval( $attributes['tooltip'] ) ? 'true' : 'false';
+}
+if ( isset( $attributes['availableShipsTo'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-available-ships-to'] = boolval( $attributes['availableShipsTo'] ) ? 'true' : 'false';
+}
+if ( isset( $attributes['availableOtherDelivery'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-available-other-delivery'] = boolval( $attributes['availableOtherDelivery'] ) ? 'true' : 'false';
+}
+if ( isset( $attributes['availableRestricted'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-available-restricted'] = boolval( $attributes['availableRestricted'] ) ? 'true' : 'false';
+}
+if ( isset( $attributes['availableNotShipsTo'] ) ) {
+	$vs_injector_wrapper_pre_attributes['data-vs-available-not-ships-to'] = boolval( $attributes['availableNotShipsTo'] ) ? 'true' : 'false';
 }
 
 ?>
