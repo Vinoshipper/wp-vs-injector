@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "vinoshipper-injector/available-in",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"title": "Available In",
 	"category": "vinoshipper",
 	"icon": "admin-site-alt3",
@@ -20,6 +20,22 @@
 		"tooltip": {
 			"type": "boolean",
 			"default": true
+		},
+		"shipsTo": {
+			"type": "boolean",
+			"default": true
+		},
+		"otherDelivery": {
+			"type": "boolean",
+			"default": true
+		},
+		"restricted": {
+			"type": "boolean",
+			"default": true
+		},
+		"notShipsTo": {
+			"type": "boolean",
+			"default": false
 		}
 	}
 }

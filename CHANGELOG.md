@@ -2,6 +2,12 @@
 
 This is a list detailing changes for all Vinoshipper Injector for WordPress releases.
 
+## 1.6.0 - 2026-10-09
+
+* Available In: Add settings to enable/disable sections.
+* Product Group: Add settings to enable/disable sections in Available In component.
+* Update WordPress support files.
+
 ## 1.5.0 - 2026-09-16
 
 * Add support to WordPress 7.1+
